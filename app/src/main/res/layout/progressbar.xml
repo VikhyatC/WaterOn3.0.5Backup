@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+
+    android:layout_gravity="center"
+    android:layout_height="30dp">
+
+    <!--<ProgressBar-->
+    <!--android:id="@+id/progressBar11"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:background="@android:color/transparent"-->
+    <!--android:layout_width="match_parent"-->
+    <!--style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"-->
+    <!--android:progress="0"-->
+    <!--android:max="100"-->
+    <!--android:progressDrawable="@drawable/progress2"-->
+    <!--android:layout_height="8dp" />-->
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:scaleType="fitXY"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:src="@drawable/progress_bar_bg"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/whitebar"
+            android:scaleType="fitXY"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+
+            android:layout_height="10dp"
+            android:src="@drawable/progress_bar_b"/>
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:background="#1F96D5"
+            android:scaleType="fitXY"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/progress_bar"
+            android:layout_width="10dp"
+            android:layout_height="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/progressBarCircle"
+            android:src="@drawable/progress_bar_tip"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:layout_width="16dp"
+            android:layout_height="16dp" />
+    </LinearLayout>
+
+</FrameLayout>

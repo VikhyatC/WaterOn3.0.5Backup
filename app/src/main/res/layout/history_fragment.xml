@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@drawable/blue_gradient"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/progressBar"
+          />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="3.5"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+
+                    android:id="@+id/graphmainpick"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"/>
+                    <RelativeLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="15dp"
+
+                            android:id="@+id/homebutton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+
+                                android:layout_width="25.0dp"
+                                android:layout_height="25.0dp"
+                                android:layout_centerVertical="true"
+
+
+                                android:background="@drawable/backicon" />
+                        </LinearLayout>
+                        <TextView
+                            android:textColor="#fff"
+                            fontPath="fonts/roboto_regular.ttf"
+                            android:textSize="20dp"
+                            android:text="History"
+                            android:id="@+id/dashboardpicker"
+                            android:gravity="center_vertical"
+                            android:layout_toRightOf="@+id/homebutton"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <include layout="@layout/rupee_liter_switch"/>
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#fff"
+                        />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="50.0dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1.0">
+
+                        <TextView
+                            android:id="@+id/roomType"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30.0dp"
+                            android:layout_weight="1"
+                            android:text="14 May - 20 May"
+                            android:textColor="#ffffffff"
+                            android:textSize="16.0dp" />
+
+                        <FrameLayout
+                            android:layout_marginRight="10dp"
+                            android:id="@+id/back"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp">
+                            <TextView
+                                android:layout_gravity="center"
+                                android:background="@drawable/b1"
+                                android:layout_width="13dp"
+                                android:layout_height="13dp" />
+                        </FrameLayout>
+                        <FrameLayout
+                            android:layout_marginRight="10dp"
+                            android:id="@+id/forward"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp">
+                            <TextView
+                                android:layout_gravity="center"
+                                android:background="@drawable/f1"
+                                android:layout_width="13dp"
+                                android:layout_height="13dp" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#fff"
+                        />
+                    <LinearLayout
+
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/amountdisplaygraph"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#fff"
+                            android:textSize="35dp"
+                            android:text="3584"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/amountdisplaygraphtype"
+                            android:layout_gravity="center_horizontal"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:text="Total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <View
+                            android:id="@+id/touchline"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@color/touched"/>
+                        <LinearLayout
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="15dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <include layout="@layout/history_graph"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/datepickgraph"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+
+                        android:id="@+id/temp_history_view"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical"
+                        >
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="60.0dip"
+                            android:layout_margin="10.0dip">
+
+                            <Button
+                                android:id="@+id/close_button_history_picker"
+                                android:layout_width="25.0dip"
+                                android:layout_height="25.0dip"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/cross" />
+
+                            <TextView
+                                android:textColor="#fff"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="15.0dip"
+                                android:layout_toRightOf="@+id/close_button_history_picker"
+                                android:text="Date Picker"
+                                android:textSize="20.0dp" />
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1.0dp"
+
+                            android:background="#ffffffff" />
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="50.0dip"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:weightSum="1.0">
+
+                            <Button
+                                android:id="@+id/weekselect"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10.0dip"
+                                android:layout_marginRight="10.0dip"
+                                android:layout_weight="0.2"
+                                android:background="@android:color/transparent"
+                                android:text="Week"
+                                android:textColor="#ffffffff" />
+
+                            <Button
+                                android:id="@+id/monthselect"
+                                android:layout_width="0.0dip"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10.0dip"
+                                android:layout_marginRight="10.0dip"
+                                android:layout_weight="0.2"
+                                android:background="@android:color/transparent"
+                                android:text="Month"
+                                android:textColor="#ffffffff" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1.0dp"
+                            android:background="#ffffffff" />
+                        <FrameLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1">
+                            <LinearLayout
+
+                                android:id="@+id/weekpickoption"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_marginBottom="20.0dip"
+                                android:layout_marginLeft="20.0dip"
+                                android:layout_marginRight="20.0dip"
+                                android:layout_marginTop="2.0dip"
+                                android:layout_weight="1.0"
+                                android:background="#ffffffff"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/weekselection0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10.0dip"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Last 7 days"
+                                        android:textColor="#222"
+                                        android:textSize="20.0dp" />
+
+                                    <TextView
+                                        android:id="@+id/weekselectiondate0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Date - Date"
+                                        android:textColor="#222"
+                                        android:textSize="15.0dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/weekselection1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10.0dip"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="This week"
+                                        android:textColor="#222"
+                                        android:textSize="20.0dp" />
+
+                                    <TextView
+                                        android:id="@+id/weekselectiondate1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Date - Date"
+                                        android:textColor="#222"
+                                        android:textSize="15.0dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/weekselection2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10.0dip"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Last week"
+                                        android:textColor="#222"
+                                        android:textSize="20.0dp" />
+
+                                    <TextView
+                                        android:id="@+id/weekselectiondate2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Date - Date"
+                                        android:textColor="#222"
+                                        android:textSize="15.0dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/weekselection3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10.0dip"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="This week last month"
+                                        android:textColor="#222"
+                                        android:textSize="20.0dp" />
+
+                                    <TextView
+                                        android:id="@+id/weekselectiondate3"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Date - Date"
+                                        android:textColor="#222"
+                                        android:textSize="15.0dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+
+                                android:visibility="gone"
+                                android:id="@+id/monthpickoption"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:layout_marginBottom="20.0dip"
+                                android:layout_marginLeft="20.0dip"
+                                android:layout_marginRight="20.0dip"
+                                android:layout_marginTop="2.0dip"
+                                android:layout_weight="1.0"
+                                android:background="#ffffffff"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/monthselection0"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10.0dip"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Last 30 day"
+                                        android:textColor="#222"
+                                        android:textSize="20.0dp" />
+
+                                    <TextView
+                                        android:id="@+id/monthselectiondate0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Date - Date"
+                                        android:textColor="#222"
+                                        android:textSize="15.0dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/monthselection1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10.0dip"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="This month"
+                                        android:textColor="#222"
+                                        android:textSize="20.0dp" />
+
+                                    <TextView
+                                        android:id="@+id/monthselectiondate1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Date - Date"
+                                        android:textColor="#222"
+                                        android:textSize="15.0dp" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/gray_gradient"
+
+            android:orientation="horizontal"
+            android:layout_weight="3.5"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="25dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/high"/>
+                <TextView
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:id="@+id/maxgraphval"
+                    android:textColor="#222"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="642"
+                    android:textSize="30dp"/>
+                <TextView
+                    android:id="@+id/maxgraphvaldate"
+                    android:textColor="#222"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18 May"
+                    android:textSize="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="25dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/low"/>
+                <TextView
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:id="@+id/mingraphval"
+                    android:textColor="#222"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="642"
+                    android:textSize="30dp"/>
+                <TextView
+                    android:id="@+id/mingraphvaldate"
+                    android:textColor="#222"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="18 May"
+                    android:textSize="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="25dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/alert"/>
+                <TextView
+                    android:id="@+id/graphalertcount"
+                    android:textColor="#222"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="0"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/alertdategraph"
+                    android:textColor="#222"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

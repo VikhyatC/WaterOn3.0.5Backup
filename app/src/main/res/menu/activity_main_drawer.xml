@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dashboard"
+            android:icon="@drawable/dashboard"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/history"
+            android:icon="@drawable/history"
+            android:title="History" />
+        <item
+            android:id="@+id/alerts"
+            android:icon="@drawable/alerts_menu"
+            android:title="Alerts" />
+        <item
+            android:id="@+id/valve_control"
+            android:icon="@drawable/menu_valve"
+            android:title="Valve control" />
+
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/menu_setting"
+            android:title="Settings" />
+
+        <item
+            android:id="@+id/support"
+            android:icon="@drawable/menu_support"
+            android:title="Support" />
+        <item
+            android:id="@+id/signOut"
+            android:icon="@drawable/sout"
+            android:title="Sign out" />
+
+
+    </group>
+    <!--<group android:checkableBehavior="single">-->
+        <!--<item-->
+
+            <!--android:id="@+id/account"-->
+            <!--android:icon="@drawable/menu_users"-->
+            <!--android:title="Account"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/meter"-->
+            <!--android:icon="@drawable/menu_meters"-->
+            <!--android:title="Water meter"-->
+            <!--/>-->
+    <!--</group>-->
+</menu>

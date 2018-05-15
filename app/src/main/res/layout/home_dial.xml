@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.wateron.smartrhomes.component.SquareLinearLayout
+        android:layout_gravity="center"
+        android:background="@drawable/home_halo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.wateron.smartrhomes.component.SquareLinearLayout>
+    <com.wateron.smartrhomes.component.SquareLinearLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.9">
+            <RelativeLayout
+                android:padding="20dp"
+                android:layout_weight="0.9"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:textColor="#fff"
+                    android:id="@+id/home_big_text"
+                    android:gravity="center"
+                    android:layout_centerInParent="true"
+                    android:textSize="52dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+                <RelativeLayout
+                    android:id="@+id/bighisclick"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/big_dial_dot"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/red_dot"
+                        android:layout_width="10dp"
+
+                        android:layout_height="10dp" />
+                    <TextView
+                        android:maxLength="10"
+                        android:id="@+id/totaltag"
+                        android:textColor="#fff"
+                        android:textSize="18dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:maxLines="1"
+                        android:text="Total"
+                        android:gravity="center"
+
+
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="2"/>
+    </com.wateron.smartrhomes.component.SquareLinearLayout>
+
+    <com.wateron.smartrhomes.component.SquareLinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="0.8"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="0.9"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_weight="0.8"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"/>
+            <RelativeLayout
+                android:padding="20dp"
+                android:layout_weight="0.9"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:gravity="center"
+                    android:id="@+id/small_text"
+                    android:textSize="26dp"
+                    android:textColor="#fff"
+                    android:layout_centerInParent="true"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0"/>
+                <RelativeLayout
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/small_dial_dot"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/red_dot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp" />
+                    <com.wateron.smartrhomes.component.FontFitTextView
+                        android:gravity="center"
+                        android:id="@+id/currentselectedmonthdisplayview"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="18dp"
+                        android:textColor="@color/white"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </com.wateron.smartrhomes.component.SquareLinearLayout>
+</FrameLayout>

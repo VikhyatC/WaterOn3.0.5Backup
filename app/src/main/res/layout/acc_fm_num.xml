@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:visibility="gone"
+                fontPath="fonts/roboto_light.ttf"
+                android:id="@+id/mobilenu"
+                android:textSize="20dp"
+                android:layout_margin="10dp"
+                android:text="Bathrrom 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:id="@+id/editor"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    fontPath="fonts/roboto_light.ttf"
+                    android:singleLine="true"
+                    android:focusable="true"
+                    android:id="@+id/changemobileisd"
+                    android:ems="4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    fontPath="fonts/roboto_light.ttf"
+                    android:singleLine="true"
+                    android:focusable="true"
+                    android:id="@+id/changemobile"
+                    android:ems="10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="center_vertical"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:src="@drawable/delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+    <ImageButton
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:scaleType="fitCenter"
+        android:id="@+id/edit"
+        android:inputType="number"
+        android:background="@android:color/transparent"
+        android:src="@drawable/menu_edit"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+    <ImageButton
+        android:visibility="gone"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="20dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/transparent"
+        android:src="@drawable/save"
+        android:id="@+id/save"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+</LinearLayout>

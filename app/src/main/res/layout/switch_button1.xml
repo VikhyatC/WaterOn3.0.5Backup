@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_alignParentRight="true"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="60dp">
+    <FrameLayout
+
+        android:layout_width="30dp"
+        android:layout_height="60dp">
+        <ImageButton
+
+            android:id="@+id/flipswitchbg"
+            android:background="@drawable/alert_vol_amt_toggle_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <LinearLayout
+            android:id="@+id/flipswitchbuttonview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/flipswitchbutton"
+
+                android:background="@drawable/alert_vol_amt_toggle_switch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+        </LinearLayout>
+
+    </FrameLayout>
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp">
+        <Button
+            style="@style/Widget.AppCompat.Button.Small"
+            android:id="@+id/flipswitchrupee"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="rupees"
+            />
+        <Button
+            style="@style/Widget.AppCompat.Button.Small"
+            android:id="@+id/flipswitchlitres"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@android:color/transparent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="litres"
+            />
+
+    </LinearLayout>
+</LinearLayout>

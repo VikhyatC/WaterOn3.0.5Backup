@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/blue_gradient"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:id="@+id/subject_text"
+        fontPath="fonts/roboto_regular.ttf"
+        android:layout_gravity="center_vertical"
+        android:textSize="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"/>
+    <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/edit_bg"
+        android:layout_width="match_parent"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#fff"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:id="@+id/user_subject"
+        android:ems="10" />
+    <TextView
+        android:id="@+id/description_text"
+        fontPath="fonts/roboto_regular.ttf"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"/>
+    <TextView
+        android:id="@+id/invalid_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textColor="#ff4d4d"
+        android:text="Please fill in some description about the issue"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <EditText
+        android:background="@drawable/edit_bg"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#fff"
+        android:gravity="top"
+        android:textColor="#000"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="135dp"
+        android:focusable="true"
+        android:id="@+id/user_description"
+        android:ems="10" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:textColor="#fff"
+        android:background="@drawable/button_effect"
+        android:layout_width="150dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="SUBMIT"
+        android:textAllCaps="false"
+        android:layout_gravity="end"/>
+</LinearLayout>

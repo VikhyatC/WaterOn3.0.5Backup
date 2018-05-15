@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "528463961508",
+    "firebase_url": "https://wateron-832e5.firebaseio.com",
+    "project_id": "wateron-832e5",
+    "storage_bucket": "wateron-832e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528463961508:android:f0d9e536ad931e35",
+        "android_client_info": {
+          "package_name": "com.wateron.smartrhomes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528463961508-1dl1f51p05chq12unk12d3mbl3fshs4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYagYzScquQ7KjOz8zeRmYA7ghwCPOeKY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528463961508:android:1e715966c60a5b55",
+        "android_client_info": {
+          "package_name": "com.ppdev.smarterhomes.wateron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528463961508-1dl1f51p05chq12unk12d3mbl3fshs4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYagYzScquQ7KjOz8zeRmYA7ghwCPOeKY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

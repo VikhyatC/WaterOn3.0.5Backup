@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.wateron.smartrhomes.component.SquareFrameView
+        android:id="@id/countdown_stoper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <com.wateron.smartrhomes.component.SquareImageButton
+            android:id="@id/valve_bg_img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitCenter"
+            android:background="@drawable/black_valve_operation" />
+
+        <TextView
+            android:id="@id/coun_down_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="50.0dp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@id/valve_icon_img"
+            android:layout_width="50.0dp"
+            android:layout_height="50.0dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/unlock" />
+    </com.wateron.smartrhomes.component.SquareFrameView>
+</LinearLayout>

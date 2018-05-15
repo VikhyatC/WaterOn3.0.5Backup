@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#02B6F0</color>
+    <color name="colorAccent">#337FC2</color>
+
+    <color name="headercolor">#013C5D</color>
+    <color name="menucolor">#337FC2</color>
+
+    <color name="billunpaid">#ff4000</color>
+    <color name="billpaid">#00a1a1</color>
+    <color name="white">#fff</color>
+
+    <color name="greytext">#999</color>
+    <color name="transparent">#0fff</color>
+
+    <color name="blacktext">#222222</color>
+    <color name="value">#FCAE56</color>
+    <color name="touched">#84B100</color>
+
+    <color name="topbg">#3380C3</color>
+    <color name="botbg">#fff</color>
+
+    <color name="c1">#02B6F0</color>
+    <color name="c2">#ff4000</color>
+    <color name="c3">#FCAE56</color>
+    <color name="c4">#84B100</color>
+</resources>

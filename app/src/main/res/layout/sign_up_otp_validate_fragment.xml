@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/blue_gradient"
+    android:layout_height="match_parent">
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_marginTop="50sp"
+            android:src="@drawable/wateron_logo"
+            android:scaleType="fitCenter"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
+        <TextView
+
+            android:textColor="#fff"
+            android:layout_margin="30dp"
+            android:textSize="25dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="Sign up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginBottom="35dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_height="fill_parent">
+        <EditText
+            android:textSize="15dp"
+            android:inputType="number"
+            android:textColor="#222"
+            android:id="@+id/otpnumber"
+            android:textColorHint="#4d4d4d"
+            android:hint="OTP Code"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#efefef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:background="@drawable/gray_gradient"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:visibility="invisible"
+            android:textColor="#222222"
+            android:id="@+id/welcomelable"
+            android:layout_margin="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/welcome_lable_1"/>
+        <LinearLayout
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/dot1"
+                android:layout_margin="3dp"
+
+                android:src="@drawable/empty_dot"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+            <ImageView
+                android:id="@+id/dot2"
+                android:layout_margin="3dp"
+                android:src="@drawable/empty_dot"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+            <ImageView
+                android:id="@+id/dot3"
+                android:layout_margin="3dp"
+                android:src="@drawable/empty_dot"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+            <ImageView
+                android:id="@+id/dot4"
+                android:layout_margin="3dp"
+                android:src="@drawable/fulldot"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/verifyOTPButton"
+            android:textColor="#fff"
+            android:layout_marginBottom="55dp"
+            android:background="@drawable/button_effect"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:text="Verify"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+</LinearLayout>

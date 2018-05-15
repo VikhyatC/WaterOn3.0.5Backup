@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@drawable/blue_gradient"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+        </LinearLayout>
+        <LinearLayout
+            android:background="@drawable/gray_gradient"
+            android:layout_weight="2.5"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:orientation="vertical"
+            android:background="@drawable/blue_gradient"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent">
+            <View
+                android:id="@+id/topspace"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+            <LinearLayout
+                android:layout_below="@+id/topspace"
+                android:id="@+id/topbarr"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="4dp"
+
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="4dp"
+                    android:id="@+id/homebutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+
+                        android:background="@drawable/hamburger"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp" />
+                </LinearLayout>
+                <Spinner
+
+                    android:background="@android:color/transparent"
+                    android:id="@+id/dashboardpicker"
+                    android:popupBackground="#fafafa"
+                    android:layout_marginBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+
+                    android:paddingTop="4dp"
+                    android:paddingLeft="3dp"
+                    android:id="@+id/ddown"
+
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="4dp"
+                    >
+                    <TextView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/downarrow"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/topspace"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <include layout="@layout/rupee_liter_switch"
+                    />
+            </LinearLayout>
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/topp"-->
+            <!--android:layout_below="@id/topspace"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!---->
+            <!--</RelativeLayout>-->
+            <RelativeLayout
+                android:layout_below="@+id/topbarr"
+
+                android:id="@+id/main_animation_holder"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+
+                >
+                <ImageView
+                    android:visibility="invisible"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/chevronleft"
+                    android:id="@+id/prevmeter"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+                <ImageView
+                    android:visibility="invisible"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/chevronright"
+                    android:id="@+id/nextmeter"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+                <LinearLayout
+                    android:layout_toRightOf="@+id/prevmeter"
+                    android:layout_toLeftOf="@+id/nextmeter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <include layout="@layout/home_dial" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:id="@+id/bottomdots"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+            <View
+                android:background="@color/topbg"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"/>
+            <com.wateron.smartrhomes.component.TouchBar
+                android:id="@+id/touch_bar"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:id="@+id/bartag1"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent">
+                    <include layout="@layout/top_home_slider"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/bartag2"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent">
+                    <include layout="@layout/bottom_home_slider"/>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+        <!--<View-->
+        <!--android:background="#f3f"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="80dp"/>-->
+
+        <LinearLayout
+            android:background="@drawable/gray_gradient"
+            android:layout_weight="2.5"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--<include layout="@layout/bottom_home_slider"/>-->
+            <View
+                android:id="@+id/linetoremove"
+                android:layout_marginTop="3dp"
+                android:background="#efefee"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        fontPath="fonts/roboto_thin.ttf"
+                        android:layout_margin="4dp"
+                        android:textColor="#222222"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Last Bill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                        <RelativeLayout
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_marginRight="10dp"
+                                android:id="@+id/billrupeetext"
+                                android:textColor="@color/billpaid"
+                                android:text="₹"
+                                android:layout_toLeftOf="@+id/billamounttext"
+                                android:layout_centerVertical="true"
+                                android:paddingTop="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:textSize="18dp"/>
+                            <TextView
+                                android:gravity="center"
+                                android:id="@+id/billamounttext"
+                                android:textColor="@color/billpaid"
+                                android:layout_centerInParent="true"
+                                android:textSize="30sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="0"/>
+                        </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            fontPath="fonts/roboto_thin.ttf"
+                            android:id="@+id/billstatus"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:textSize="10dp"
+                            android:gravity="center"
+                            android:background="@drawable/bill_status_paid"
+                            android:layout_width="fill_parent"
+                            android:layout_height="15dp"
+                            android:text="Paid"/>
+                        <TextView
+                            fontPath="fonts/roboto_thin.ttf"
+                            android:textSize="10dp"
+                            android:id="@+id/billdate"
+                            android:textColor="@color/billpaid"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:text="30 May 2016"
+                            android:layout_width="fill_parent"
+                            android:layout_height="20dp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:background="#efefee"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"></LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        fontPath="fonts/roboto_thin.ttf"
+                        android:layout_margin="4dp"
+                        android:textColor="#222222"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Alerts"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:id="@+id/alert_view"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:id="@+id/alert_icon_active"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/no_alert"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                        <TextView
+                            android:id="@+id/alertText"
+                            android:textColor="#101010"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:text="No active\nalerts"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

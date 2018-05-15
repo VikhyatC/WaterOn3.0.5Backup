@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/black_gradient"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dp"
+        android:layout_margin="10.0dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/homemenubutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:layout_width="25.0dp"
+                android:layout_height="20.0dp"
+                android:layout_centerVertical="true"
+
+
+                android:background="@drawable/backicon" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/spinner_time"
+            android:layout_width="wrap_content"
+            android:layout_height="55.0dp"
+            android:layout_toRightOf="@+id/homemenubutton"
+            android:gravity="center"
+            android:text="Valve Control"
+            android:textColor="#ffffffff"
+            android:textSize="20.0dp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dp"
+        android:background="#fff" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1.0">
+
+        <TextView
+            android:id="@+id/roomType"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30.0dp"
+            android:layout_weight="1"
+            android:text="14 May - 20 May"
+            android:textColor="#ffffffff"
+            android:textSize="16.0dp" />
+
+        <FrameLayout
+            android:layout_marginRight="10dp"
+            android:id="@+id/previousBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:background="@drawable/b1"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_marginRight="10dp"
+            android:id="@+id/nextBtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:background="@drawable/f1"
+                android:layout_width="13dp"
+                android:layout_height="13dp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dp"
+        android:background="#fff" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10.0dp"
+        android:layout_marginTop="20.0dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:layout_margin="15dp"
+            android:id="@+id/valve_control_alert_img"
+            android:layout_weight="3"
+            android:layout_marginTop="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dp"
+            android:src="@drawable/valve_control_flag" />
+
+        <LinearLayout
+            android:layout_weight="1.5"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/valve_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valve is closed since"
+                android:textColor="#ffffffff"
+                android:textSize="18.0dp" />
+
+            <TextView
+                android:id="@+id/valve_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wed 24 May"
+                android:textColor="#ffffffff"
+                android:textSize="30.0dp" />
+
+            <TextView
+
+                android:id="@+id/valve_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:15 pm"
+                android:textColor="#ffffffff"
+                android:textSize="20.0dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1.0dp"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/valve_action_type"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30.0dp"
+        android:gravity="center"
+        android:text="@string/resume_water_supply"
+        android:textColor="#ffffffff"
+        android:textSize="20.0dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.0">
+
+        <include layout="@layout/valve_switch" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/valve_bottom_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30.0dp"
+        android:gravity="center"
+        android:text="Press &amp; hold for 5 sec"
+        android:textColor="#ffffffff"
+        android:textSize="15.0dp" />
+</LinearLayout>

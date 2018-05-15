@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/withValve"
+        android:layout_width="202.0dp"
+        android:layout_height="112.0dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/alert_switch_img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:src="@drawable/alert_action_button" />
+
+        <com.wateron.smartrhomes.component.SquareRelativeView
+            android:id="@+id/alert_right_switch"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20.0dp"
+            android:layout_marginRight="5.0dp"
+            android:layout_marginTop="20.0dp">
+
+            <TextView
+                android:id="@+id/coun_down_text2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center" />
+            <TextView
+                android:id="@+id/coun_down_text22"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center" />
+        </com.wateron.smartrhomes.component.SquareRelativeView>
+
+        <com.wateron.smartrhomes.component.SquareRelativeView
+            android:id="@+id/switch_left_button"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5.0dp">
+
+            <TextView
+                android:id="@+id/coun_down_text1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="40.0dp" />
+            <TextView
+                android:id="@+id/coun_down_text11"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:textSize="40.0dp" />
+        </com.wateron.smartrhomes.component.SquareRelativeView>
+
+        <ImageView
+            android:id="@+id/alert_small_icon_img"
+            android:layout_width="25.0dp"
+            android:layout_height="20.0dp"
+            android:layout_marginLeft="146.0dp"
+            android:layout_marginTop="45.0dp"
+            android:src="@drawable/alert_ignore" />
+
+        <ImageView
+            android:id="@+id/alert_big_icon_img"
+            android:layout_width="35.0dp"
+            android:layout_height="35.0dp"
+            android:layout_marginLeft="42.0dp"
+            android:layout_marginTop="40.0dp"
+            android:src="@drawable/alert_lock" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/countdown_stoper"
+        android:layout_width="112dp"
+        android:layout_gravity="center"
+        android:layout_height="112dp">
+
+        <com.wateron.smartrhomes.component.SquareImageView
+            android:id="@+id/valve_bg_img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/red_alert" />
+
+        <TextView
+            android:id="@+id/coun_down_text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="40.0dp"
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/valve_icon_img"
+            android:layout_width="40.0dp"
+            android:layout_height="40.0dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/unread_envelope" />
+        <TextView
+            android:id="@+id/coun_down_text3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+
+            android:textSize="40.0dp"
+            />
+    </FrameLayout>
+</FrameLayout>
