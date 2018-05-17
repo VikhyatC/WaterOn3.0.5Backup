@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.wateron.smartrhomes.R;
 import com.wateron.smartrhomes.activities.MainActivity;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.component.MeterAdapter;
 import com.wateron.smartrhomes.models.Apartment;
 import com.wateron.smartrhomes.models.Meter;
@@ -191,7 +192,7 @@ public class SettingFragment extends Fragment implements MeterHandlerInterface {
                 String[] mobile = LoginHandler.getUserMobile(getContext());
                 String versionDetails = System.getProperty("os.version");
                 Log.d("VersionDetails",versionDetails);
-                CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"X_MSIN:"+xmsin+"\n"+"TOKEN:"+token+"METER_ID:"+meter_id+"RENAME_TO:"+newName,dateTime,"android");
+                CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"X_MSIN:"+xmsin+"\n"+"TOKEN:"+token+"METER_ID:"+meter_id+"RENAME_TO:"+newName,dateTime,"android");
                     ((MainActivity)getActivity()).logevent("Setting_WaterMeter_MeterName_change","Error updating name","Error non fatal");
                     Toast.makeText(getActivity(),"Error Updating location name",Toast.LENGTH_LONG).show();
 

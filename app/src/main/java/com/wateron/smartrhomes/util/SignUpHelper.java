@@ -48,7 +48,7 @@ public class SignUpHelper {
 
     public static void signInUser(PreLoginActivity activity, String mobile, String pw) {
         SignUpHelper.activity=activity;
-            SignInTask getDataTask=new SignInTask();
+        SignInTask getDataTask=new SignInTask();
 //        String password= URLEncoder.encode(pw);
         getDataTask.execute(mobile,pw);
     }
@@ -163,7 +163,7 @@ public class SignUpHelper {
         protected Void doInBackground(String... params) {
             String response = null;
             int HttpResult = 0;
-            url="http://appapi.wateron.in/v2.0/reset/password/"+params[0];
+            url="https://appapi.wateron.in/v2.0/reset/password/"+params[0];
             Log.d("data getting",url);
             try {
                 URL object=new URL(url);
@@ -253,7 +253,7 @@ public class SignUpHelper {
         String url;
         @Override
         protected Void doInBackground(String... params) {
-            url="http://appapi.wateron.in/v2.0/otp/validate/"+params[0]+"/"+params[1];
+            url="https://appapi.wateron.in/v2.0/otp/validate/"+params[0]+"/"+params[1];
             Log.d("data getting",url);
             try {
                 URL object=new URL(url);
@@ -334,7 +334,7 @@ public class SignUpHelper {
         String url;
         @Override
         protected Void doInBackground(String... params) {
-             url="http://appapi.wateron.in/v2.0/register/mobilenum/"+params[0];
+             url="https://appapi.wateron.in/v2.0/register/mobilenum/"+params[0];
             Log.d("data getting",url);
             try {
                 URL object=new URL(url);

@@ -37,6 +37,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.wateron.smartrhomes.R;
 import com.wateron.smartrhomes.application.App;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.fragments.AccountFragment;
 import com.wateron.smartrhomes.fragments.AlertFragment;
 import com.wateron.smartrhomes.fragments.DashboardFragment;
@@ -835,7 +836,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
         String versionDetails = System.getProperty("os.version");
         Log.d("VersionDetails",versionDetails);
-        CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"X_MSIN:"+xmsin+"\n"+"TOKEN:"+token,dateTime,"android");
+        CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"X_MSIN:"+xmsin+"\n"+"TOKEN:"+token,dateTime,"android");
         Toast.makeText(getApplicationContext(),"Refresh failed Please try again",Toast.LENGTH_LONG).show();
     }
 

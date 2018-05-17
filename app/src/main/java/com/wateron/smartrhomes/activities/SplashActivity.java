@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wateron.smartrhomes.R;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.models.Apartment;
 import com.wateron.smartrhomes.models.Meter;
 import com.wateron.smartrhomes.models.Slabs;
@@ -360,7 +361,7 @@ public class SplashActivity extends AppCompatActivity implements DashboardHandle
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
             String dateTime = sdf.format(new Date());
             String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
-            CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"REQUEST_URL:"+url+"X_MSIN:"+xmsin+"TOKEN:"+token,dateTime,"android");
+            CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"REQUEST_URL:"+url+"X_MSIN:"+xmsin+"TOKEN:"+token,dateTime,"android");
             Toast.makeText(getApplicationContext(),"Error Fetching Apartment data, please signin again",Toast.LENGTH_LONG).show();
             DataHelper dataHandler=new DataHelper(getApplicationContext());
             dataHandler.deletedata();

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wateron.smartrhomes.R;
 import com.wateron.smartrhomes.activities.MainActivity;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.component.Bar;
 import com.wateron.smartrhomes.models.Apartment;
 import com.wateron.smartrhomes.models.GraphData;
@@ -3414,7 +3415,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
         String dateTime = sdf.format(new Date());
         String[] mobile = LoginHandler.getUserMobile(getContext());
-        CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"REQUEST_URL:"+url+"X_MSIN:"+xmsin+"TOKEN:"+token,dateTime,"android");
+        CrashHelper.SendCrashMailer(mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"REQUEST_URL:"+url+"X_MSIN:"+xmsin+"TOKEN:"+token,dateTime,"android");
     }
 
     @Override

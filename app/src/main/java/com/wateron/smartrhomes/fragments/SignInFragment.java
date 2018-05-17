@@ -189,18 +189,27 @@ public class SignInFragment extends Fragment {
     }
 
     private boolean validate() {
-        Log.d("Validate Details", String.valueOf(code));
+        Log.d("Validate Details", String.valueOf(ccode.getText().toString().equals("91")));
+        Log.d("Validate Details", String.valueOf(ccode.getText().toString().equals("91")));
         if(mobile.getText().toString().trim().isEmpty() || ccode.getText().toString().trim().isEmpty()){
             errorcode=1;
 
         }
-        if(code.equals("91")){
+        if(ccode.getText().toString().equals("91")){
             Log.d("Detected India :", String.valueOf(mobile.getText().toString().length()));
             if (mobile.getText().toString().length()!=10){
 
 //                Toast.makeText(getContext(),"Please enter a valid 10 digit mobile number",Toast.LENGTH_LONG).show();
                 errorcode =3;
                 errorcode1 =3;
+            }
+        }else{
+            if (mobile.getText().toString().length()<15){
+                errorcode = 0;
+                errorcode1 = 0;
+            }else {
+                errorcode1 =1;
+                errorcode =1;
             }
         }
 

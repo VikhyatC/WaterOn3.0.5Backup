@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wateron.smartrhomes.R;
 import com.wateron.smartrhomes.activities.MainActivity;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.models.Alert;
 import com.wateron.smartrhomes.models.Apartment;
 import com.wateron.smartrhomes.models.Meter;
@@ -738,7 +739,7 @@ public class AlertFragment extends Fragment implements AlertHandlerInterface, Va
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
         String dateTime = sdf.format(new Date());
         String[] mobile = LoginHandler.getUserMobile(getContext());
-        CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"XMSIN:"+xmsin+"\n"+"TOKEN:"+token,dateTime+"-"+"AlertScreen","android");
+        CrashHelper.SendCrashMailer(mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"XMSIN:"+xmsin+"\n"+"TOKEN:"+token,dateTime+"-"+"AlertScreen","android");
         gotoHome();
     }
 
@@ -773,7 +774,7 @@ public class AlertFragment extends Fragment implements AlertHandlerInterface, Va
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
                 String dateTime = sdf.format(new Date());
                 String[] mobile = LoginHandler.getUserMobile(getContext());
-                CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(code),response+"REQUEST_URL:"+url+"XMSIN:"+xmsin+"TOKEN:"+token+"METER_ID"+meter_id+"ACTION:"+action,dateTime,"android");
+                CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0],AppConstants.APPVERSION, String.valueOf(code),response+"REQUEST_URL:"+url+"XMSIN:"+xmsin+"TOKEN:"+token+"METER_ID"+meter_id+"ACTION:"+action,dateTime,"android");
                 Toast.makeText(getActivity(),response,Toast.LENGTH_LONG).show();
                 Toast.makeText(getActivity(),"Failed! Unable to make request",Toast.LENGTH_SHORT).show();
             }

@@ -24,6 +24,7 @@ import android.os.Build;
 
 import com.bumptech.glide.Glide;
 import com.wateron.smartrhomes.R;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.component.TouchListner1;
 import com.wateron.smartrhomes.fragments.ForgotPasswordFragment;
 import com.wateron.smartrhomes.fragments.ForgotPasswordOtpValidateFragment;
@@ -46,6 +47,7 @@ public class PreLoginActivity extends AppCompatActivity {
     private static String SIGNINTAG = "SignInScreen";
     private static String SIGNUPTAG = "SignupScreen";
     private static String RESETPASSWORDTAG = "ResetPasswordScreen";
+
     String mobileNo="";
     String ccode="91";
     ProgressDialog progressdialog;
@@ -329,8 +331,8 @@ public class PreLoginActivity extends AppCompatActivity {
                 String product_name = Build.PRODUCT;
                 String versionDetails = System.getProperty("os.version");
                 Log.d("VersionDetails",versionDetails);
-                CrashHelper.SendCrashMailer(mobileNo,"3.0.5", String.valueOf(code),s+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name,dateTime+"-"+OTPTAG,"android");
-                Toast.makeText(PreLoginActivity.this,"Couldn't send OTP, please try again",Toast.LENGTH_LONG).show();
+                CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo, AppConstants.APPVERSION, String.valueOf(code),s+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name,dateTime+"-"+OTPTAG,"android");
+                Toast.makeText(PreLoginActivity.this,"Invalid Mobile Number",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -397,13 +399,11 @@ public class PreLoginActivity extends AppCompatActivity {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
                 String dateTime = sdf.format(new Date());
                 String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
-                Log.d("Mobile number:",mobileNo);
+                Log.d("Mobile number Verified:",mobileNo);
                 String model_name = Build.MODEL;
                 String manufacturer_name = Build.MANUFACTURER;
                 String product_name = Build.PRODUCT;
-                CrashHelper.SendCrashMailer(mobileNo,"3.0.5", String.valueOf(code),response+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+"\n"+url+"\n"+s,dateTime+"-"+OTPTAG,"android");
-                Toast.makeText(PreLoginActivity.this,"Couldn't send OTP, please try again",Toast.LENGTH_LONG).show();
-//              logevent("Signup_OTP_verify_error","OTP Error","Error non fatal");
+                CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo,AppConstants.APPVERSION, String.valueOf(code),response+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+"\n"+url+"\n"+s,dateTime+"-"+OTPTAG,"android");
                 Toast.makeText(PreLoginActivity.this,"Error verifying OTP, please try again",Toast.LENGTH_LONG).show();
             }
         });
@@ -432,7 +432,7 @@ public class PreLoginActivity extends AppCompatActivity {
                 String manufacturer_name = Build.MANUFACTURER;
                 String product_name = Build.PRODUCT;
                 String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
-                CrashHelper.SendCrashMailer(mobileNo,"3.0.5", String.valueOf(httpResult),response+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+"\n"+url+"\n"+s,dateTime+"-"+RESETPASSWORDTAG,"android");
+                CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo,AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+"\n"+url+"\n"+s,dateTime+"-"+RESETPASSWORDTAG,"android");
                 Toast.makeText(PreLoginActivity.this,"Couldn't send OTP, please try again",Toast.LENGTH_LONG).show();
 //                logevent("Signup_password_save_error","Password Error","Error non fatal");
                 Toast.makeText(PreLoginActivity.this,"Error storing password, please try again",Toast.LENGTH_LONG).show();
@@ -464,7 +464,7 @@ public class PreLoginActivity extends AppCompatActivity {
                 String model_name = Build.MODEL;
                 String manufacturer_name = Build.MANUFACTURER;
                 String product_name = Build.PRODUCT;
-                CrashHelper.SendCrashMailer(mobileNo,"3.0.5", String.valueOf(httpResult),response1+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+request_url+authoriztaion+token,dateTime+"-"+SIGNINTAG,"android");
+                CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo,AppConstants.APPVERSION, String.valueOf(httpResult),response1+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+request_url+authoriztaion+token,dateTime+"-"+SIGNINTAG,"android");
                 Toast.makeText(PreLoginActivity.this,"Couldn't send OTP, please try again",Toast.LENGTH_LONG).show();
                 Toast.makeText(PreLoginActivity.this,"Invalid mobile no or password",Toast.LENGTH_SHORT).show();
             }

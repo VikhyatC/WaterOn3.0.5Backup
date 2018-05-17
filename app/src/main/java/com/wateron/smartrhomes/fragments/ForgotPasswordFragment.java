@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,9 +87,28 @@ public class ForgotPasswordFragment extends Fragment {
                     }else {
                         if(mobileNo!=null){
                             if(!mobileNo.isEmpty()){
+                                if(cc.getText().toString().equals("91")){
+                                    Log.d("Detected India :", String.valueOf(mobileforVerify.getText().toString().length()));
+                                    if (mobileforVerify.getText().toString().length()==10){
+
+//                Toast.makeText(getContext(),"Please enter a valid 10 digit mobile number",Toast.LENGTH_LONG).show();
+                                        ((PreLoginActivity)getActivity()).setMobileNo(mobileNo,ccode);
+                                        ((PreLoginActivity)getActivity()).requestOTP(false);
+                                    }else{
+
+                                        mobileforVerify.setError("Please enter valid 10 digit mobile number");
+                                    }
+                                }else{
+                                    if (mobileforVerify.getText().toString().length()<15){
+                                        ((PreLoginActivity)getActivity()).setMobileNo(mobileNo,ccode);
+                                        ((PreLoginActivity)getActivity()).requestOTP(false);
+                                    }else {
+                                        mobileforVerify.setError("Please enter valid mobile number");
+                                    }
+
+                                }
 //                                ((SignUpActivity)getActivity()).logevent("Signup_signup","Signup click","Touch Event");
-                                ((PreLoginActivity)getActivity()).setMobileNo(mobileNo,ccode);
-                                ((PreLoginActivity)getActivity()).requestOTP(true);
+
                             }else {
                                 mobileforVerify.setError("Please enter valid mobile number");
                             }

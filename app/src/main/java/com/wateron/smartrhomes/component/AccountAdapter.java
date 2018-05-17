@@ -52,7 +52,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
         String dateTime = sdf.format(new Date());
         String[] mobile = LoginHandler.getUserMobile(getContext());
-        CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"REQUEST_URL:"+url+"XMSIN:"+xmsin+"TOKEN:"+token,dateTime+"-"+"AccountSettingsScreen","android");
+        CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0],AppConstants.APPVERSION, String.valueOf(httpResult),response+"REQUEST_URL:"+url+"XMSIN:"+xmsin+"TOKEN:"+token,dateTime+"-"+"AccountSettingsScreen","android");
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.wateron.smartrhomes.R;
 import com.wateron.smartrhomes.activities.MainActivity;
 import com.wateron.smartrhomes.component.AccountAdapter;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.models.Account;
 import com.wateron.smartrhomes.util.AccountHandlerInterface;
 import com.wateron.smartrhomes.util.AccountHelper;
@@ -111,7 +112,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
         String dateTime = sdf.format(new Date());
         String[] mobile = LoginHandler.getUserMobile(getContext());
-        CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"REQUEST_URL:"+url+"X_MSIN:"+xmsin+"TOKEN:"+token,dateTime+"-"+"AccountSettingsScreen","android");
+        CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"REQUEST_URL:"+url+"X_MSIN:"+xmsin+"TOKEN:"+token,dateTime+"-"+"AccountSettingsScreen","android");
     }
 
     @Override
@@ -163,7 +164,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
         String dateTime = sdf.format(new Date());
         String[] mobile = LoginHandler.getUserMobile(getContext());
-        CrashHelper.SendCrashMailer(mobile[0],"3.0.5", String.valueOf(httpResult),response+"\n"+s1+"\n"+s2+"MEMBER_COUNTRY_CODE:"+member_ccode+"MEMBER_MOBILE:"+member_mobile+"APT_ID:"+apt_id,dateTime,"android");
+        CrashHelper.SendCrashMailer(mobile[0],AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+s1+"\n"+s2+"MEMBER_COUNTRY_CODE:"+member_ccode+"MEMBER_MOBILE:"+member_mobile+"APT_ID:"+apt_id,dateTime,"android");
     }
 
 

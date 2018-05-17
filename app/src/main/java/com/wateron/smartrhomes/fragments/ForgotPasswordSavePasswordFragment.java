@@ -142,9 +142,14 @@ public class ForgotPasswordSavePasswordFragment extends Fragment {
                             }else{
 
 //                                ((PreLoginActivity)getActivity()).logevent("Signup_password_save","Password save button","Touch Event");
-                                PreLoginActivity signUpActivity=((PreLoginActivity)getActivity());
-                                signUpActivity.setPass(np);
-                                signUpActivity.savePassword();
+                                if (np.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")){
+                                    PreLoginActivity signUpActivity=((PreLoginActivity)getActivity());
+                                    signUpActivity.setPass(np);
+                                    signUpActivity.savePassword();
+                                }else{
+                                    new_passsword.setError("Minimum length for password is 8 character with minimum 1 special character and 1 number atleast");
+                                }
+
                             }
                         }else {
                             new_passsword.setError("Minimum length for password is 8 character with minimum 1 special character");

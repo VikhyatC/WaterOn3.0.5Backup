@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wateron.smartrhomes.R;
 import com.wateron.smartrhomes.activities.MainActivity;
+import com.wateron.smartrhomes.component.AppConstants;
 import com.wateron.smartrhomes.component.TouchBar;
 import com.wateron.smartrhomes.component.TouchBarCommunicator;
 import com.wateron.smartrhomes.models.Apartment;
@@ -39,6 +40,7 @@ import com.wateron.smartrhomes.models.DashDataDates;
 import com.wateron.smartrhomes.models.DashboardData;
 import com.wateron.smartrhomes.models.Meter;
 import com.wateron.smartrhomes.models.Slabs;
+import com.wateron.smartrhomes.util.CrashHelper;
 import com.wateron.smartrhomes.util.DashboardHandlerInterface;
 import com.wateron.smartrhomes.util.DashboardHelper;
 import com.wateron.smartrhomes.util.DataHelper;
@@ -830,6 +832,12 @@ public class DashboardFragment extends Fragment implements DashboardHandlerInter
     @Override
     public void errorGettingData(String response, int httpResult, String url, String xmsin, String token) {
         System.out.println("step 3");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
+        String dateTime = sdf.format(new Date());
+        String[] mobile = LoginHandler.getUserMobile(getContext());
+        String versionDetails = System.getProperty("os.version");
+        Log.d("VersionDetails",versionDetails);
+        CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"X_MSIN:"+xmsin+"\n"+"TOKEN:"+token,dateTime,"android");
     }
 
 //    @Override
