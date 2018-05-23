@@ -107,6 +107,7 @@
             android:background="@android:color/transparent"
             android:id="@+id/addmemeber"
             android:src="@drawable/plus"
+            android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="25dp"

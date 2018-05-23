@@ -41,6 +41,8 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
     AccountFragment accountFragment;
     ViewHolder holder;
     List<Account> accounts = new ArrayList<>();
+    private boolean isResident;
+
     public AccountAdapter(@NonNull Context context, int resource, @NonNull List<Account> accounts, List<String> mobiles, AccountFragment accountFragment) {
         super(context, resource, accounts);
         this.accountFragment = accountFragment;
@@ -87,6 +89,8 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
     }
 
 
+
+
     static class ViewHolder{
         public EditText mobileView,isdView;
         public TextView mobilenumDisp;
@@ -98,7 +102,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View rowView = convertView;
-
+        Log.d("GetFamilyList","Now");
         if(rowView == null){
 
             LayoutInflater customInflater=LayoutInflater.from(getContext());
@@ -114,29 +118,21 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
             holder.delete = rowView.findViewById(R.id.delete);
             holder.editor = rowView.findViewById(R.id.editor);
             rowView.setTag(holder);
+
         }
 
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
         Account account = getItem(position);
         String data = account.getNumber();
-        if(account.isEditable()){
-            Log.d("Account","Editable");
-            holder.edit.setVisibility(View.GONE);
-            holder.save.setVisibility(View.VISIBLE);
-            holder.editor.setVisibility(View.VISIBLE);
-            holder.mobilenumDisp.setVisibility(View.GONE);
-        }else{
-            Log.d("Account","UnEditable");
-            holder.edit.setVisibility(View.VISIBLE);
-            holder.save.setVisibility(View.GONE);
-            holder.editor.setVisibility(View.GONE);
-            holder.mobilenumDisp.setVisibility(View.VISIBLE);
-        }
+
         if(data==null){
             return rowView;
         }
-        holder.save.setEnabled(false);
+
+        holder.save.setVisibility(View.GONE);
+        holder.delete.setVisibility(View.GONE);
+        holder.edit.setVisibility(View.GONE);
         SharedPreferences preferences = getContext().getSharedPreferences("defaults_pref", MODE_PRIVATE);
         final int aptID = preferences.getInt("apartmentIdSelected",0);
         holder.mobilenumDisp.setText(data);
@@ -150,58 +146,71 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
         holder.mobileView.setText(mobi);
         holder.isdView.setText(is);
 
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Deleting Data : ",finalData);
-                accountFragment.deleteUser(finalData,aptID,position);
-                notifyDataSetChanged();
-                Toast.makeText(getContext(),"Memeber Deleted Successfully",Toast.LENGTH_LONG).show();
-            }
-        });
-
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accountFragment.editUser(finalData);
-
-            }
-        });
-        holder.save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String[] mobile = LoginHandler.getUserMobile(getContext());
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences("login_details", MODE_PRIVATE);
-                String authToken = sharedPreferences.getString("authToken",null);
-//                Log.d("Autho",authToken);
-                String member_mobile= holder.mobileView.getText().toString().trim();
-                String member_isd= holder.isdView.getText().toString().trim();
-                Log.d("FieldsEmpty", String.valueOf(member_mobile.length()));
-                if(member_mobile.length()>0 && member_isd.length()>0){
-                    Log.d("Member Details:",member_mobile+":"+member_isd);
-                    AccountHelper.addFamilyMember(mobile[0],mobile[1], authToken,AccountAdapter.this,member_mobile,member_isd);
-                    accountFragment.removeExisitingUser(position);
-                    return;
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
+        isResident = sharedPreferences.getBoolean("isResident",false);
+        if (isResident){
+            holder.save.setVisibility(View.VISIBLE);
+            holder.delete.setVisibility(View.VISIBLE);
+            holder.delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String member_mobile= holder.mobileView.getText().toString().trim();
+                    String member_isd= holder.isdView.getText().toString().trim();
+                    if(member_mobile.length()>0 && member_isd.length()>0) {
+                        Log.d("Deleting Data : ", finalData);
+                        accountFragment.deleteUser(finalData, aptID, position);
+                        notifyDataSetChanged();
+                        Toast.makeText(getContext(), "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
+                    }
                 }
-                Log.d("Saving","Account Details");
-            }
-        });
-        holder.mobileView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            });
 
-            }
+            holder.edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    accountFragment.editUser(finalData);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                holder.save.setEnabled(true);
-            }
+                }
+            });
+            holder.save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String[] mobile = LoginHandler.getUserMobile(getContext());
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("login_details", MODE_PRIVATE);
+                    String authToken = sharedPreferences.getString("authToken",null);
+//                Log.d("Autho",authToken);
+                    String member_mobile= holder.mobileView.getText().toString().trim();
+                    String member_isd= holder.isdView.getText().toString().trim();
+                    Log.d("FieldsEmpty", String.valueOf(member_mobile.length()));
+                    if(member_mobile.length()>0 && member_isd.length()>0){
+                        Log.d("Member Details:",member_mobile+":"+member_isd);
+                        AccountHelper.addFamilyMember(mobile[0],mobile[1], authToken,AccountAdapter.this,member_mobile,member_isd);
+                        accountFragment.removeExisitingUser(position);
+                        return;
+                    }
+                    Log.d("Saving","Account Details");
+                }
+            });
+            holder.mobileView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
+                }
 
-            }
-        });
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    holder.save.setEnabled(true);
+                    holder.delete.setEnabled(true);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+        }
+
+
         return rowView;
     }
 }

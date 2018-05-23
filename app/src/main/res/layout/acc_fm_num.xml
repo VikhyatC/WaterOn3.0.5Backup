@@ -72,7 +72,6 @@
         android:layout_width="30dp"
         android:layout_height="30dp" />
     <ImageButton
-        android:visibility="gone"
         android:layout_gravity="center_vertical"
         android:layout_marginRight="20dp"
         android:scaleType="fitCenter"

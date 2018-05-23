@@ -127,7 +127,6 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
             mobiles.clear();
         }
         accounts.clear();
-
         for(String s:numbers){
             Account account=new Account(s,false);
             accounts.add(account);
@@ -241,7 +240,20 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
             JSONObject User_details = new JSONObject(user_data);
             String mobile = User_details.getString("resident_phone");
             inst_lc.setText(mobile);
-        } catch (JSONException e) {
+            String[] user_mobile = LoginHandler.getUserMobile(getContext());
+            Log.d("Resident :User ",mobile+":"+ user_mobile[1]+"-"+user_mobile[0]);
+            if ((user_mobile[1]+"-"+user_mobile[0]).equals(mobile)){
+                addmemeber.setVisibility(View.VISIBLE);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean("isResident",true).apply();
+                adapter.notifyDataSetChanged();
+                //                adapter.ShowInterface();
+            }else{
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean("isResident",false).apply();
+                adapter.notifyDataSetChanged();
+            }
+        }catch (JSONException e) {
             e.printStackTrace();
         }
 

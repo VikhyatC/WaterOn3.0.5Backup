@@ -417,7 +417,7 @@ public class PreLoginActivity extends AppCompatActivity {
         SignUpHelper.storePassword(PreLoginActivity.this,"("+ccode+")"+mobileNo,pass);
     }
 
-    public void onStorePasswordFailed(final int httpResult, final String s, final String url, String token, final String response) {
+    public void onStorePasswordFailed(final int httpResult, final String s, final String url, final String token, final String response) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -432,8 +432,7 @@ public class PreLoginActivity extends AppCompatActivity {
                 String manufacturer_name = Build.MANUFACTURER;
                 String product_name = Build.PRODUCT;
                 String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
-                CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo,AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+"\n"+url+"\n"+s,dateTime+"-"+RESETPASSWORDTAG,"android");
-                Toast.makeText(PreLoginActivity.this,"Couldn't send OTP, please try again",Toast.LENGTH_LONG).show();
+                CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo,AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+"\n"+url+"\n"+s+"\n"+token,dateTime+"-"+RESETPASSWORDTAG,"android");
 //                logevent("Signup_password_save_error","Password Error","Error non fatal");
                 Toast.makeText(PreLoginActivity.this,"Error storing password, please try again",Toast.LENGTH_LONG).show();
             }
