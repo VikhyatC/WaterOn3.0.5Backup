@@ -72,7 +72,10 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
             public void onClick(View view) {
                 Account account = new Account("(91) ",true);
                 adapter.insert(account,0);
+                SharedPreferences preferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                preferences.edit().putBoolean("addentry",true).apply();
                 adapter.notifyDataSetChanged();
+                adapter.showInterface();
 //                String[] mobile = LoginHandler.getUserMobile(getContext());
 //                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details", MODE_PRIVATE);
 //                String authToken = sharedPreferences.getString("authToken",null);
@@ -247,7 +250,6 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("isResident",true).apply();
                 adapter.notifyDataSetChanged();
-                //                adapter.ShowInterface();
             }else{
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("isResident",false).apply();

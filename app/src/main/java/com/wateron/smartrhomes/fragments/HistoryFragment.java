@@ -190,30 +190,33 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
             double min=graphData.getWeekvalue1();
             double max=graphData.getWeekvalue1();
             String dat=graphData.getWeekDates1();
-            if(graphData.getWeekvalue2()<min){
+
+            if((graphData.getWeekvalue2()<min)&&(checkIfBeforeToday(graphData.getWeekDates6()))){
                 min=graphData.getWeekvalue2();
                 dat=graphData.getWeekDates2();
             }
-            if(graphData.getWeekvalue3()<min){
+            if((graphData.getWeekvalue3()<min)&&(checkIfBeforeToday(graphData.getWeekDates3()))){
                 min=graphData.getWeekvalue3();
                 dat=graphData.getWeekDates3();
             }
-            if(graphData.getWeekvalue4()<min){
+            if((graphData.getWeekvalue4()<min)&&(checkIfBeforeToday(graphData.getWeekDates4()))){
                 min=graphData.getWeekvalue4();
                 dat=graphData.getWeekDates4();
             }
-            if(graphData.getWeekvalue5()<min){
+            if((graphData.getWeekvalue5()<min)&&(checkIfBeforeToday(graphData.getWeekDates5()))){
                 min=graphData.getWeekvalue5();
                 dat=graphData.getWeekDates5();
             }
-            if(graphData.getWeekvalue6()<min){
+
+            if((graphData.getWeekvalue6()<min)&&(checkIfBeforeToday(graphData.getWeekDates6()))){
                 min=graphData.getWeekvalue6();
                 dat=graphData.getWeekDates6();
             }
-            if(graphData.getWeekvalue7()<min){
+            if((graphData.getWeekvalue7()<min)&&(checkIfBeforeToday(graphData.getWeekDates7()))){
                 min=graphData.getWeekvalue7();
                 dat=graphData.getWeekDates7();
             }
+            Log.d("MinWeekDate",dat);
             graphData.setWeekmindate(dat);
 
             dat=graphData.getWeekDates1();
@@ -608,6 +611,47 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
         }
 
 
+    }
+
+    private boolean checkIfBeforeToday(String weekDates6) {
+        Log.d("WeekDates",weekDates6);
+        Calendar c = Calendar.getInstance();
+
+// set the calendar to start of today
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+// and get that as a Date
+        Date today = c.getTime();
+        Log.d("Today Date", String.valueOf(today));
+// or as a timestamp in milliseconds
+        long todayInMillis = c.getTimeInMillis();
+
+// user-specified date which you are testing
+// let's say the components come from a form or something
+        String[] date_details = weekDates6.split("-");
+        System.out.println("date of week:"+Integer.parseInt(date_details[2]));
+        int year = Integer.parseInt(date_details[0]);//
+        int month = Integer.parseInt(date_details[1])-1;
+        int dayOfMonth = Integer.parseInt(date_details[2]);
+
+// reuse the calendar to set user specified date
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+// and get that as a Date
+        Date dateSpecified = c.getTime();
+
+// test your condition
+        if (dateSpecified.before(today)) {
+            System.err.println("Date specified [" + dateSpecified + "] is before today [" + today + "]");
+        } else {
+            System.err.println("Date specified [" + dateSpecified + "] is NOT before today [" + today + "]");
+        }
+        return dateSpecified.before(today);
     }
 
     private void loadGraph() {
@@ -1453,10 +1497,11 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                 break;
         }
         int currentDay=6-today;
-
+        Log.d("Current day", String.valueOf(currentDay));
 
         weekoptionfrom[1]=sdf.format(getPastTime(currenttime,today));
         weekoptionto[1]=sdf.format(getFutureTime(currenttime,currentDay));
+        Log.d("Future Date", String.valueOf(weekoptionto[1]));
         weekoptionfrom[2]=sdf.format(getPastTime(getPastTime(currenttime,7),today));
         weekoptionto[2]=sdf.format(getFutureTime(getPastTime(currenttime,7),currentDay));
 

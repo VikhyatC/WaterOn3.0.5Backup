@@ -704,8 +704,6 @@ public class DataHelper extends SQLiteOpenHelper{
     }
      public void updateDashboard(List<TwoHourForMeter> twoHourForMeterList ){
          SQLiteDatabase db = getWritableDatabase();
-
-        Log.d("TwoHourMeterslist", String.valueOf(twoHourForMeterList));
          for(TwoHourForMeter tm:twoHourForMeterList){
              db.execSQL("delete from "+ TWO_HOURLY_CONSUMPTION_DATA_TABLE+ " where "+TWO_HOURLY_CONSUMPTION_DATA_ID+ " = "+tm.getMeterId()+"-"+tm.getDate()+"-"+tm.getSlot());
              ContentValues contentValues = new ContentValues();
@@ -719,8 +717,33 @@ public class DataHelper extends SQLiteOpenHelper{
              db.insertWithOnConflict(TWO_HOURLY_CONSUMPTION_DATA_TABLE,null,contentValues,SQLiteDatabase.CONFLICT_REPLACE);
 
          }
-         db.close();
 
+     }
+
+    private void updataDailyConsumptionTable() {
+    }
+
+    private List<TwoHourForMeter>[] partition(List<TwoHourForMeter> twoHourForMeterList, int size) {
+        // get size of the list
+        int size_list = twoHourForMeterList.size();
+
+        // calculate number of partitions --> m sublists each of size n
+        int m = size_list / size;
+        if (size_list % size != 0)
+            m++;
+
+        // create m empty lists
+        List<TwoHourForMeter>[] partition = new ArrayList[m];
+        for (int i = 0; i < m; i++)
+        {
+            int fromIndex = i*size;
+            int toIndex = (i*size + size < size) ? (i*size + size) : size;
+
+            partition[i] = new ArrayList<>(twoHourForMeterList.subList(fromIndex, toIndex));
+        }
+
+        // return the lists
+        return partition;
      }
 
     public void deletedata() {

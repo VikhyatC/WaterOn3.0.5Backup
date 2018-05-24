@@ -455,7 +455,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Log.d("Loading Mode", String.valueOf(apartment2Load));
                     Preferences.edit().putBoolean("Apartment1firstTime",false).commit();
                 }
-            }else {
+            }else{
                 if ((apartment1Load==null)&&(getSharedPreferences("defaults_pref",Context.MODE_PRIVATE).getInt("apartmentPosition",-1)==1)){
 //                            String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
 //                            SharedPreferences preferences = getSharedPreferences("login_details",MODE_PRIVATE);

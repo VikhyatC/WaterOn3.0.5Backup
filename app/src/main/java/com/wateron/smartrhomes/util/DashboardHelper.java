@@ -443,9 +443,11 @@ public class DashboardHelper {
                             this.twoHourForMeterList.add(tm);
                         }
                     }
+
                     new DataHelper(handlerInterface.getInstance()).updateDashboard(this.twoHourForMeterList);
-//                new DataHelper(handlerInterface.getInstance()).storeAlerts(alertList);
+ //                new DataHelper(handlerInterface.getInstance()).storeAlerts(alertList);
                     handlerInterface.loadData(true);
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

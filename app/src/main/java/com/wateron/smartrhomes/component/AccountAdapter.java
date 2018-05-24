@@ -88,7 +88,13 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
 
     }
 
+    public void ShowInterface() {
+        holder.save.setVisibility(View.VISIBLE);
+    }
 
+    public void showInterface() {
+        notifyDataSetChanged();
+    }
 
 
     static class ViewHolder{
@@ -122,7 +128,6 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
         }
 
         final ViewHolder holder = (ViewHolder) rowView.getTag();
-
         Account account = getItem(position);
         String data = account.getNumber();
 
@@ -148,8 +153,15 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
         isResident = sharedPreferences.getBoolean("isResident",false);
+        boolean addentry =  sharedPreferences.getBoolean("addentry",false);
         if (isResident){
-            holder.save.setVisibility(View.VISIBLE);
+            if (addentry){
+              holder.save.setVisibility(View.VISIBLE);
+              holder.save.setEnabled(true);
+              SharedPreferences preferences1 = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
+              preferences1.edit().putBoolean("addentry",false).apply();
+            }
+            //            holder.save.setVisibility(View.VISIBLE);
             holder.delete.setVisibility(View.VISIBLE);
             holder.delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -194,13 +206,14 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
             holder.mobileView.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                    holder.save.setEnabled(true);
+                    holder.delete.setEnabled(true);
                 }
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    holder.save.setEnabled(true);
-                    holder.delete.setEnabled(true);
+
+
                 }
 
                 @Override

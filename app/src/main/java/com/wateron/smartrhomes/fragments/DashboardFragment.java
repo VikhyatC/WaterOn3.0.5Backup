@@ -685,11 +685,6 @@ public class DashboardFragment extends Fragment implements DashboardHandlerInter
 //        MainActivity.refreshLayout.setEnabled(false);
         System.out.println("step 2");
         MainActivity.refreshLayout.setRefreshing(false);
-        if(latest){
-
-        }else{
-
-        }
         apartments = dataHelper.loadApartments();
         if(apartments != null && apartments.size()!=0){
             loadDefaults();
