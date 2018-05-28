@@ -57,6 +57,7 @@ import com.wateron.smartrhomes.util.RefreshHandlerInterface;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -840,6 +841,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toast.makeText(getApplicationContext(),"Refresh failed Please try again",Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void updateDailyConsumption(Double yesterday, Double today, HashMap<Integer, ArrayList<Double>> meter_values) {
+
+    }
 
 
     @Override

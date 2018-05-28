@@ -52,6 +52,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -833,6 +834,14 @@ public class DashboardFragment extends Fragment implements DashboardHandlerInter
         String versionDetails = System.getProperty("os.version");
         Log.d("VersionDetails",versionDetails);
         CrashHelper.SendCrashMailer("("+mobile[1]+")"+mobile[0], AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+"REQUEST_URL:"+url+"\n"+"X_MSIN:"+xmsin+"\n"+"TOKEN:"+token,dateTime,"android");
+    }
+
+    @Override
+    public void updateDailyConsumption(Double yesterday, Double today, HashMap<Integer, ArrayList<Double>> meter_values) {
+        Log.d("Meters:today:yesterday", String.valueOf(meter_values)+":"+today+":"+yesterday);
+        homeSmallText.setText(String.format("%.2f",today));
+        double total = today + yesterday;
+        homeBigText.setText(String.format("%.2f",total));
     }
 
 //    @Override
@@ -1729,7 +1738,6 @@ public class DashboardFragment extends Fragment implements DashboardHandlerInter
                     }
                     for(int i=0;i<7;i++){
                         dashDataDates.weekldatalitresdates.add(m.getId()+"-"+weekdates.get(i));
-
                     }
                     for(int i=0;i<7;i++){
                         try {

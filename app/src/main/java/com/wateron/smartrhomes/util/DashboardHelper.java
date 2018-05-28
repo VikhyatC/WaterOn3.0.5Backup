@@ -27,10 +27,9 @@ import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Paranjay on 06-12-2017.
@@ -347,6 +346,7 @@ public class DashboardHelper {
         private String xmsin;
         private String token;
 
+
         @Override
         protected Void doInBackground(String... strings) {
             url = "https://appapi.wateron.in/v2.0/cons/hourly/" + strings[1];
@@ -400,9 +400,11 @@ public class DashboardHelper {
 
         @Override
         protected void  onPostExecute(Void aVoid) {
+            HashMap<Integer, ArrayList<Double>> meter_values = new HashMap<>();
             try {
-
-                if((response!=null)&&(!response.isEmpty())){
+                 double total_today = 0;
+                 double total_yesterday = 0;
+                 if((response!=null)&&(!response.isEmpty())){
 
 
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
@@ -434,19 +436,28 @@ public class DashboardHelper {
                             tm.setMeterId(meter_id);
                             tm.setSlot(DashboardHelper.twoHourForMeters.get(k).getSlot());
                             if (k % 2 == 0) {
+                                ArrayList<Double> hourly_value_today = new ArrayList<>();
                                 tm.setValue(twoToday.getDouble(countToday));
+                                hourly_value_today.add(twoToday.getDouble(countToday));
+                                meter_values.put(meter_id,hourly_value_today);
+                                total_today += twoToday.getDouble(countToday);
                                 countToday++;
                             } else {
+                                ArrayList<Double> hourly_value_yesterday = new ArrayList<>();
                                 tm.setValue(twoyester.getDouble(countYesterday));
+                                hourly_value_yesterday.add(twoyester.getDouble(countYesterday));
+                                meter_values.put(meter_id,hourly_value_yesterday);
+                                total_yesterday += twoyester.getDouble(countYesterday);
                                 countYesterday++;
                             }
                             this.twoHourForMeterList.add(tm);
                         }
                     }
-
                     new DataHelper(handlerInterface.getInstance()).updateDashboard(this.twoHourForMeterList);
- //                new DataHelper(handlerInterface.getInstance()).storeAlerts(alertList);
+
+                    //                new DataHelper(handlerInterface.getInstance()).storeAlerts(alertList);
                     handlerInterface.loadData(true);
+                    handlerInterface.updateDailyConsumption(total_today,total_yesterday,meter_values);
 
                     }
                 } catch (JSONException e) {

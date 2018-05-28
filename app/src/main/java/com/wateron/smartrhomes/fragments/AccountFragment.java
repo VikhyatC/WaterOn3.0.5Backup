@@ -2,6 +2,7 @@ package com.wateron.smartrhomes.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wateron.smartrhomes.R;
@@ -35,6 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -65,17 +68,21 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         String[] mobile = LoginHandler.getUserMobile(getContext());
         AccountHelper.loadFamily(mobile[0],mobile[1], FirebaseInstanceId.getInstance().getToken(),AccountFragment.this,selectedAptId);
     }
-
+    public static boolean isClicked = false;
     private void initClicks() {
         addmemeber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Account account = new Account("(91) ",true);
-                adapter.insert(account,0);
-                SharedPreferences preferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
-                preferences.edit().putBoolean("addentry",true).apply();
-                adapter.notifyDataSetChanged();
-                adapter.showInterface();
+
+                if (!isClicked){
+                    isClicked =true;
+                    Account account = new Account("(91) ",true);
+                    adapter.insert(account,0);
+                    SharedPreferences preferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                    preferences.edit().putBoolean("addentry",true).apply();
+                    adapter.notifyDataSetChanged();
+                }
+
 //                String[] mobile = LoginHandler.getUserMobile(getContext());
 //                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details", MODE_PRIVATE);
 //                String authToken = sharedPreferences.getString("authToken",null);
@@ -148,7 +155,14 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
 
     @Override
     public void loadData(Long member_number) {
-
+        for (Account account:accounts){
+            Log.d("NumberAccount:memberNo",account.getNumber()+member_number);
+            if(account.getNumber().equals("(91)"+member_number.toString())){
+                adapter.remove(account);
+                Toast.makeText(getContext(), "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
+            }
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Override

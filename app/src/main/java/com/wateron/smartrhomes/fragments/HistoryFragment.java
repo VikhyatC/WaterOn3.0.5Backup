@@ -358,122 +358,124 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
             double min=graphData.getMonthvalue1();
             double max=graphData.getMonthvalue1();
             String dat=graphData.getMonthDates1();
-            if(min>graphData.getMonthvalue2()){
+            if(min>graphData.getMonthvalue2()&&checkIfBeforeToday(graphData.getMonthDates2())){
                 min=graphData.getMonthvalue2();
                 dat=graphData.getMonthDates2();
             }
-            if(min>graphData.getMonthvalue3()){
+            if(min>graphData.getMonthvalue3()&&checkIfBeforeToday(graphData.getMonthDates3())){
                 min=graphData.getMonthvalue3();
                 dat=graphData.getMonthDates3();
             }
-            if(min>graphData.getMonthvalue4()){
+            if(min>graphData.getMonthvalue4()&&checkIfBeforeToday(graphData.getMonthDates4())){
                 min=graphData.getMonthvalue4();
                 dat=graphData.getMonthDates4();
             }
-            if(min>graphData.getMonthvalue5()){
+            if(min>graphData.getMonthvalue5()&&checkIfBeforeToday(graphData.getMonthDates5())){
                 min=graphData.getMonthvalue5();
                 dat=graphData.getMonthDates5();
             }
-            if(min>graphData.getMonthvalue6()){
+            if(min>graphData.getMonthvalue6()&&checkIfBeforeToday(graphData.getMonthDates6())){
                 min=graphData.getMonthvalue6();
                 dat=graphData.getMonthDates6();
             }
-            if(min>graphData.getMonthvalue7()){
+            if(min>graphData.getMonthvalue7()&&checkIfBeforeToday(graphData.getMonthDates7())){
                 min=graphData.getMonthvalue7();
                 dat=graphData.getMonthDates7();
             }
-            if(min>graphData.getMonthvalue8()){
+            if(min>graphData.getMonthvalue8()&&checkIfBeforeToday(graphData.getMonthDates8())){
                 min=graphData.getMonthvalue8();
                 dat=graphData.getMonthDates8();
             }
-            if(min>graphData.getMonthvalue9()){
+            if(min>graphData.getMonthvalue9()&&checkIfBeforeToday(graphData.getMonthDates9())){
                 min=graphData.getMonthvalue9();
                 dat=graphData.getMonthDates9();
             }
-            if(min>graphData.getMonthvalue10()){
+            if(min>graphData.getMonthvalue10()&&checkIfBeforeToday(graphData.getMonthDates10())){
                 min=graphData.getMonthvalue10();
                 dat=graphData.getMonthDates10();
             }
-            if(min>graphData.getMonthvalue11()){
+            if(min>graphData.getMonthvalue11()&&checkIfBeforeToday(graphData.getMonthDates11())){
                 min=graphData.getMonthvalue11();
                 dat=graphData.getMonthDates11();
             }
 
-            if(min>graphData.getMonthvalue12()){
+            if(min>graphData.getMonthvalue12()&&checkIfBeforeToday(graphData.getMonthDates12())){
                 min=graphData.getMonthvalue12();
                 dat=graphData.getMonthDates12();
             }
-            if(min>graphData.getMonthvalue13()){
+            if(min>graphData.getMonthvalue13()&&checkIfBeforeToday(graphData.getMonthDates13())){
                 min=graphData.getMonthvalue13();
                 dat=graphData.getMonthDates13();
             }
-            if(min>graphData.getMonthvalue14()){
+            if(min>graphData.getMonthvalue14()&&checkIfBeforeToday(graphData.getMonthDates14())){
                 min=graphData.getMonthvalue14();
                 dat=graphData.getMonthDates14();
             }
-            if(min>graphData.getMonthvalue15()){
+            if(min>graphData.getMonthvalue15()&&checkIfBeforeToday(graphData.getMonthDates15())){
                 min=graphData.getMonthvalue15();
                 dat=graphData.getMonthDates15();
             }
-            if(min>graphData.getMonthvalue16()){
+            if(min>graphData.getMonthvalue16()&&checkIfBeforeToday(graphData.getMonthDates16())){
                 min=graphData.getMonthvalue16();
                 dat=graphData.getMonthDates16();
             }
-            if(min>graphData.getMonthvalue17()){
+            if(min>graphData.getMonthvalue17()&&checkIfBeforeToday(graphData.getMonthDates17())){
                 min=graphData.getMonthvalue17();
                 dat=graphData.getMonthDates17();
             }
-            if(min>graphData.getMonthvalue18()){
+            if(min>graphData.getMonthvalue18()&&checkIfBeforeToday(graphData.getMonthDates18())){
                 min=graphData.getMonthvalue18();
                 dat=graphData.getMonthDates18();
             }
-            if(min>graphData.getMonthvalue19()){
+            if(min>graphData.getMonthvalue19()&&checkIfBeforeToday(graphData.getMonthDates19())){
                 min=graphData.getMonthvalue19();
                 dat=graphData.getMonthDates19();
             }
-            if(min>graphData.getMonthvalue20()){
+            if(min>graphData.getMonthvalue20()&&checkIfBeforeToday(graphData.getMonthDates20())){
                 min=graphData.getMonthvalue20();
                 dat=graphData.getMonthDates20();
             }
 
-            if(min>graphData.getMonthvalue21()){
+            if(min>graphData.getMonthvalue21()&&checkIfBeforeToday(graphData.getMonthDates21())){
                 min=graphData.getMonthvalue21();
                 dat=graphData.getMonthDates21();
             }
 
-            if(min>graphData.getMonthvalue22()){
+            if(min>graphData.getMonthvalue22()&&checkIfBeforeToday(graphData.getMonthDates22())){
                 min=graphData.getMonthvalue22();
                 dat=graphData.getMonthDates22();
             }
-            if(min>graphData.getMonthvalue23()){
+            if(min>graphData.getMonthvalue23()&&checkIfBeforeToday(graphData.getMonthDates23())){
                 min=graphData.getMonthvalue23();
                 dat=graphData.getMonthDates23();
             }
-            if(min>graphData.getMonthvalue24()){
+            if(min>graphData.getMonthvalue24()&&checkIfBeforeToday(graphData.getMonthDates24())){
                 min=graphData.getMonthvalue24();
                 dat=graphData.getMonthDates24();
             }
-            if(min>graphData.getMonthvalue25()){
+            if(min>graphData.getMonthvalue25()&&checkIfBeforeToday(graphData.getMonthDates25())){
                 min=graphData.getMonthvalue25();
                 dat=graphData.getMonthDates25();
             }
-            if(min>graphData.getMonthvalue26()){
+            if(min>graphData.getMonthvalue26()&&checkIfBeforeToday(graphData.getMonthDates26())){
                 min=graphData.getMonthvalue26();
                 dat=graphData.getMonthDates26();
             }
-            if(min>graphData.getMonthvalue27()){
+            if(min>graphData.getMonthvalue27()&&checkIfBeforeToday(graphData.getMonthDates27())){
                 min=graphData.getMonthvalue27();
                 dat=graphData.getMonthDates27();
             }
-            if(min>graphData.getMonthvalue28()){
+
+            if(min>graphData.getMonthvalue28()&&checkIfBeforeToday(graphData.getMonthDates28())){
+                Log.d("28thisBeforeToday", String.valueOf(checkIfBeforeToday(graphData.getMonthDates28())));
                 min=graphData.getMonthvalue28();
                 dat=graphData.getMonthDates28();
             }
-            if(min>graphData.getMonthvalue29()){
+            if(min>graphData.getMonthvalue29()&&checkIfBeforeToday(graphData.getMonthDates29())){
                 min=graphData.getMonthvalue29();
                 dat=graphData.getMonthDates29();
             }
-            if(min>graphData.getMonthvalue30()){
+            if(min>graphData.getMonthvalue30()&&checkIfBeforeToday(graphData.getMonthDates30())){
                 min=graphData.getMonthvalue30();
                 dat=graphData.getMonthDates30();
             }
@@ -651,7 +653,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
         } else {
             System.err.println("Date specified [" + dateSpecified + "] is NOT before today [" + today + "]");
         }
-        return dateSpecified.before(today);
+        return dateSpecified.before(today)||(dateSpecified.equals(today));
     }
 
     private void loadGraph() {

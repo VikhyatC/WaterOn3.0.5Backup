@@ -34,7 +34,9 @@ import com.wateron.smartrhomes.util.TokenSessionHandler;
 import org.json.JSONArray;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -372,6 +374,11 @@ public class SplashActivity extends AppCompatActivity implements DashboardHandle
                 SharedPreferences sharedPreferences=getSharedPreferences(s,MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
             }
+
+    }
+
+    @Override
+    public void updateDailyConsumption(Double yesterday, Double today, HashMap<Integer, ArrayList<Double>> meter_values) {
 
     }
 

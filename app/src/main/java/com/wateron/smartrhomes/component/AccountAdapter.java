@@ -135,7 +135,6 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
             return rowView;
         }
 
-        holder.save.setVisibility(View.GONE);
         holder.delete.setVisibility(View.GONE);
         holder.edit.setVisibility(View.GONE);
         SharedPreferences preferences = getContext().getSharedPreferences("defaults_pref", MODE_PRIVATE);
@@ -155,7 +154,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
         isResident = sharedPreferences.getBoolean("isResident",false);
         boolean addentry =  sharedPreferences.getBoolean("addentry",false);
         if (isResident){
-            if (addentry){
+            if ((addentry)){
               holder.save.setVisibility(View.VISIBLE);
               holder.save.setEnabled(true);
               SharedPreferences preferences1 = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
@@ -172,7 +171,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
                         Log.d("Deleting Data : ", finalData);
                         accountFragment.deleteUser(finalData, aptID, position);
                         notifyDataSetChanged();
-                        Toast.makeText(getContext(), "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
+
                     }
                 }
             });
@@ -189,6 +188,8 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
                 public void onClick(View view) {
                     String[] mobile = LoginHandler.getUserMobile(getContext());
                     SharedPreferences sharedPreferences = getContext().getSharedPreferences("login_details", MODE_PRIVATE);
+                    sharedPreferences.edit().putBoolean("addentry",true).apply();
+                    AccountFragment.isClicked = false;
                     String authToken = sharedPreferences.getString("authToken",null);
 //                Log.d("Autho",authToken);
                     String member_mobile= holder.mobileView.getText().toString().trim();
@@ -200,6 +201,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
                         accountFragment.removeExisitingUser(position);
                         return;
                     }
+                    AccountFragment.isClicked = false;
                     Log.d("Saving","Account Details");
                 }
             });
