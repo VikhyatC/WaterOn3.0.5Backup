@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.wateron.smartrhomes.models.Account;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -261,8 +262,8 @@ public class AccountHelper {
             try {
                 if (object != null) {
                     con = (HttpURLConnection) object.openConnection();
-                    con.setReadTimeout(15000);
-                    con.setConnectTimeout(15000 /* milliseconds */);
+                    con.setReadTimeout(25000);
+                    con.setConnectTimeout(25000 /* milliseconds */);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -376,7 +377,11 @@ public class AccountHelper {
                 if (HttpResult==200){
                     JSONObject data = new JSONObject(response);
                     Long member_number = data.getLong("member_mobile_num");
-                    handlerInterface.loadData(member_number);
+                    Account account = new Account();
+                    account.setNumber(member_number.toString());
+                    account.setEditable(false);
+
+                    handlerInterface.loadData(account);
                 }
 
             } catch (JSONException e) {

@@ -104,7 +104,7 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
         selectedAptId = sharedPreferences.getInt("apartmentIdSelected",-1);
         final String mobile = mobile_MSIN[0]/*+mobile_MSIN[0]*/;
         Log.d("url & Mobile",url+" "+mobile);
-
+        loadContext();
        /* if(User_details!=null){
             try {
                 email_iD = User_details.getString("resident_email");
@@ -302,6 +302,7 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
             String inputLine;
             // JSON data
             JSONObject customfields = new JSONObject();
+            Log.d("Address",strings[2]);
             try {
                 customfields.put("mobile_number",strings[1]);
                 customfields.put("address",strings[2]);
@@ -311,11 +312,12 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
 
             JSONObject data = new JSONObject();
             try {
+
                 data.put("description", strings[0]);
                 data.put("subject", strings[3]);
                 data.put("email", strings[4]);
                 data.put("priority", 1);
-                data.put("custom_fields",customfields);
+
                 // data.put("custom_fields", new JSONArray().;
                 data.put("status",2);
 

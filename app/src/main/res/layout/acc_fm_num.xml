@@ -25,12 +25,14 @@
                 android:id="@+id/editor"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp">
                 <EditText
                     android:imeOptions="actionNext"
-                    android:inputType="phone"
+                    android:inputType="none"
                     fontPath="fonts/roboto_light.ttf"
                     android:focusable="true"
+
+                    android:background="@android:color/transparent"
                     android:id="@+id/changemobileisd"
                     android:ems="4"
                     android:layout_width="wrap_content"
@@ -39,6 +41,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="phone"
                     fontPath="fonts/roboto_light.ttf"
+                    android:background="@android:color/transparent"
                     android:singleLine="true"
                     android:focusable="true"
                     android:id="@+id/changemobile"

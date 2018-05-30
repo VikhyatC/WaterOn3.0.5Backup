@@ -1,8 +1,8 @@
 package com.wateron.smartrhomes.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,7 +37,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
+import java.util.ListIterator;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,15 +50,22 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
 
     private String[] mobile_MSIN;
     private int selectedAptId;
+    private Activity activity;
+    private Context context;
+    private String member_to_delete;
+    private int position;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.account_fragment,container,false);
+        this.activity = getActivity();
+        this.context = getContext();
+        getContext();
         initView(view);
         initClicks();
         loadStartData();
-        getActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         return view;
     }
 
@@ -77,8 +84,10 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
                 if (!isClicked){
                     isClicked =true;
                     Account account = new Account("(91) ",true);
-                    adapter.insert(account,0);
-                    SharedPreferences preferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                    accounts.add(0,account);
+                    adapter.notifyDataSetChanged();
+                    familylist.smoothScrollToPosition(0);
+                    SharedPreferences preferences = activity.getSharedPreferences("login_details",MODE_PRIVATE);
                     preferences.edit().putBoolean("addentry",true).apply();
                     adapter.notifyDataSetChanged();
                 }
@@ -89,13 +98,13 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
 //                Log.d("Autho",authToken);
 //                AccountHelper.addFamilyMember(mobile[0],mobile[1], authToken,AccountFragment.this);
 //                AccountHelper.addFamilyMember(mobile[0],mobile[1], authToken,AccountFragment.this);
-                ((MainActivity)getActivity()).logevent("Setting_Account_Add_family","Save Family","Touch Event");
+                ((MainActivity)activity).logevent("Setting_Account_Add_family","Save Family","Touch Event");
             }
         });
         homemenubutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).onBackPressed();
+                ((MainActivity)activity).onBackPressed();
             }
         });
     }
@@ -142,7 +151,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
             accounts.add(account);
         }
         mobiles.addAll(numbers);
-        adapter = new AccountAdapter(getActivity(),R.layout.acc_fm_num,accounts,mobiles,AccountFragment.this);
+        adapter = new AccountAdapter(activity,R.layout.acc_fm_num,accounts,mobiles,AccountFragment.this);
         familylist.setAdapter(adapter);
     }
 
@@ -154,15 +163,13 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
     }
 
     @Override
-    public void loadData(Long member_number) {
-        for (Account account:accounts){
-            Log.d("NumberAccount:memberNo",account.getNumber()+member_number);
-            if(account.getNumber().equals("(91)"+member_number.toString())){
-                adapter.remove(account);
-                Toast.makeText(getContext(), "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
-            }
-        }
+    public void loadData(Account member_number) {
+//        member_number.setNumber(member_to_delete);
+        Account account = adapter.getItem(position);
+        adapter.remove(account);
+        Log.d("AccountToDelete :",member_number.getNumber());
         adapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -175,7 +182,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
 
     @Override
     public void errorLoadingDeletedMembers(String response, int httpResult, String s, String s1, String s2, int member_ccode, String member_mobile, long apt_id, String pos) {
-        adapter.remove(adapter.getItem(Integer.parseInt(pos)));
+//        adapter.remove(adapter.getItem(Integer.parseInt(pos)));
         adapter.notifyDataSetChanged();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
         String dateTime = sdf.format(new Date());
@@ -192,17 +199,16 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
     }
 
     public void deleteUser(String mobi, int aptID, int pos) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("login_details",MODE_PRIVATE);
         String token = sharedPreferences.getString("authToken",null);
-
         mobi=mobi.replace("(","");
         mobi=mobi.replace(")","-");
+        position = pos;
         String mobile[] = LoginHandler.getUserMobile(getContext());
         final String member_mobile=mobi.split("-")[1];
         final String is= mobi.split("-")[0];
         if (token!= null){
             AccountHelper.deleteFamily(mobile[0],mobile[1],token,member_mobile,this,is,aptID,pos);
-
         }
 
 //        Log.d("Deleting mobile and ISN",member_mobile+" "+is);
@@ -218,7 +224,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         }
     }
 
-    private void toggleEditor(Account id){
+    public void toggleEditor(Account id){
         if(id==null){
             for(Account a: accounts){
                 a.setEditable(false);
@@ -239,7 +245,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         if (SCROLL_STATE_TOUCH_SCROLL == scrollState) {
 
             Log.d("Clearing Focus","OnScrolled");
-            View currentFocus = getActivity().getCurrentFocus();
+            View currentFocus = activity.getCurrentFocus();
             if (currentFocus != null) {
                 currentFocus.clearFocus();
             }
@@ -257,15 +263,15 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
             JSONObject User_details = new JSONObject(user_data);
             String mobile = User_details.getString("resident_phone");
             inst_lc.setText(mobile);
-            String[] user_mobile = LoginHandler.getUserMobile(getContext());
+            String[] user_mobile = LoginHandler.getUserMobile(context);
             Log.d("Resident :User ",mobile+":"+ user_mobile[1]+"-"+user_mobile[0]);
             if ((user_mobile[1]+"-"+user_mobile[0]).equals(mobile)){
                 addmemeber.setVisibility(View.VISIBLE);
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                SharedPreferences sharedPreferences = activity.getSharedPreferences("login_details",MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("isResident",true).apply();
                 adapter.notifyDataSetChanged();
             }else{
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login_details",MODE_PRIVATE);
+                SharedPreferences sharedPreferences = activity.getSharedPreferences("login_details",MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("isResident",false).apply();
                 adapter.notifyDataSetChanged();
             }

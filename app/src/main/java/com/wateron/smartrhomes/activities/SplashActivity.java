@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
+import android.support.v4.os.ConfigurationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -61,6 +63,9 @@ public class SplashActivity extends AppCompatActivity implements DashboardHandle
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        String locale = getApplicationContext().getResources().getConfiguration().locale.getCountry();
+        String current = getApplicationContext().getResources().getConfiguration().locale.getDisplayCountry();
+        Log.d("DeviceLocale:",current);
 //        SharedPreferences shp = getSharedPreferences("toast_state",MODE_PRIVATE);
         loading_bar = (LinearLayout)findViewById(R.id.id111);
         progressBarCircle=(ImageView)findViewById(R.id.progressBarCircle);
@@ -96,18 +101,6 @@ public class SplashActivity extends AppCompatActivity implements DashboardHandle
             }else{
                 fetchData();
             }
-            //loadHomePage();
-//                }
-
-
-//            if(LoginHandler.isUserInDemoMode(getApplicationContext())){
-            //loadHomePage();
-//            }else{
-
-
-            //loadHomePage();
-
-//            }
 
         }else {
             if(previous_state ){
@@ -128,7 +121,9 @@ public class SplashActivity extends AppCompatActivity implements DashboardHandle
                     AlertDialog alertDialog = builder.create();
                     alertDialog.show();
                 }else{
+
                     String userm = getSharedPreferences("userdaetails",MODE_PRIVATE).getString("mobile","");
+                    Log.d("UserMobile",userm);
                     String mobile = userm.substring(userm.length()-10);
                     String isd = userm.substring(0,2);
                     LoginHandler.loginUserToApp(mobile,isd,true,getApplicationContext());
@@ -181,10 +176,6 @@ public class SplashActivity extends AppCompatActivity implements DashboardHandle
         loading_bar.setVisibility(View.VISIBLE);
         pg=0;
         setBarProgress(pg);
-
-        //DashboardHelper.getDashboardData(mobile[0],mobile[1], FirebaseInstanceId.getInstance().getToken(),this);
-        //long currentTime = new Date().getTime();
-//        }
 
         String[] mobile = LoginHandler.getUserMobile(getApplicationContext());
         DashboardHelper.PreloadDashboardData(mobile[0],mobile[1], FirebaseInstanceId.getInstance().getToken(),this);

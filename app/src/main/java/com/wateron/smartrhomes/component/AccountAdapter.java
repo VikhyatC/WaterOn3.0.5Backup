@@ -1,10 +1,12 @@
 package com.wateron.smartrhomes.component;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,7 +71,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
     }
 
     @Override
-    public void loadData(Long member_number) {
+    public void loadData(Account member_number) {
 
     }
 
@@ -104,15 +106,15 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
         public LinearLayout editor;
     }
 
+    @SuppressLint("ViewHolder")
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View rowView = convertView;
-        Log.d("GetFamilyList","Now");
-        if(rowView == null){
+        LayoutInflater customInflater=LayoutInflater.from(getContext());
+        View rowView = customInflater.inflate(R.layout.acc_fm_num,parent,false);;
 
-            LayoutInflater customInflater=LayoutInflater.from(getContext());
-            rowView=customInflater.inflate(R.layout.acc_fm_num,parent,false);
+//        if(rowView == null){
+            Log.d("GetFamilyList","Now");
             holder = new ViewHolder();
             holder.mobileView = rowView.findViewById(R.id.changemobile);
             holder.mobileView.requestFocus();
@@ -125,16 +127,17 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
             holder.editor = rowView.findViewById(R.id.editor);
             rowView.setTag(holder);
 
-        }
+//        }
 
-        final ViewHolder holder = (ViewHolder) rowView.getTag();
+//        final ViewHolder holder = (ViewHolder) rowView.getTag();
         Account account = getItem(position);
         String data = account.getNumber();
 
         if(data==null){
             return rowView;
         }
-
+        holder.mobileView.setInputType(InputType.TYPE_NULL);
+        holder.isdView.setInputType(InputType.TYPE_NULL);
         holder.delete.setVisibility(View.GONE);
         holder.edit.setVisibility(View.GONE);
         SharedPreferences preferences = getContext().getSharedPreferences("defaults_pref", MODE_PRIVATE);
@@ -153,12 +156,18 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
         isResident = sharedPreferences.getBoolean("isResident",false);
         boolean addentry =  sharedPreferences.getBoolean("addentry",false);
+
         if (isResident){
-            if ((addentry)){
-              holder.save.setVisibility(View.VISIBLE);
-              holder.save.setEnabled(true);
-              SharedPreferences preferences1 = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
-              preferences1.edit().putBoolean("addentry",false).apply();
+            if ((addentry)||(account.isEditable())){
+                Log.d("Save","VisibleNow");
+                holder.save.setVisibility(View.VISIBLE);
+                holder.save.setEnabled(true);
+                holder.isdView.setInputType(InputType.TYPE_CLASS_PHONE);
+                holder.mobileView.setInputType(InputType.TYPE_CLASS_PHONE);
+                holder.isdView.setFocusable(true);
+                holder.mobileView.setFocusable(true);
+                SharedPreferences preferences1 = getContext().getSharedPreferences("login_details",MODE_PRIVATE);
+                preferences1.edit().putBoolean("addentry",false).apply();
             }
             //            holder.save.setVisibility(View.VISIBLE);
             holder.delete.setVisibility(View.VISIBLE);
@@ -171,7 +180,6 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
                         Log.d("Deleting Data : ", finalData);
                         accountFragment.deleteUser(finalData, aptID, position);
                         notifyDataSetChanged();
-
                     }
                 }
             });
@@ -208,8 +216,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
             holder.mobileView.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    holder.save.setEnabled(true);
-                    holder.delete.setEnabled(true);
+
                 }
 
                 @Override

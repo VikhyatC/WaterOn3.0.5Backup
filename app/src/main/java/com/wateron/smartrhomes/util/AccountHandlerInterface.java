@@ -1,5 +1,7 @@
 package com.wateron.smartrhomes.util;
 
+import com.wateron.smartrhomes.models.Account;
+
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ public interface AccountHandlerInterface {
     void loadData(List<String> numbers);
     void loadData();
 
-    void loadData(Long member_number);
+    void loadData(Account member_number);
 
     void loadAddedData(String number);
 
