@@ -63,6 +63,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         this.context = getContext();
         getContext();
         initView(view);
+        Log.d("IsClicked", String.valueOf(isClicked));
         initClicks();
         loadStartData();
         activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
@@ -80,12 +81,10 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         addmemeber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (!isClicked){
-                    isClicked =true;
+                    isClicked = true;
                     Account account = new Account("(91) ",true);
                     accounts.add(0,account);
-                    adapter.notifyDataSetChanged();
                     familylist.smoothScrollToPosition(0);
                     SharedPreferences preferences = activity.getSharedPreferences("login_details",MODE_PRIVATE);
                     preferences.edit().putBoolean("addentry",true).apply();
@@ -181,13 +180,19 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
     }
 
     @Override
-    public void errorLoadingDeletedMembers(String response, int httpResult, String s, String s1, String s2, int member_ccode, String member_mobile, long apt_id, String pos) {
+    public void errorLoadingDeletedMembers(final String response, final int httpResult, final String s, final String s1, final String s2, final int member_ccode, final String member_mobile, final long apt_id, String pos) {
 //        adapter.remove(adapter.getItem(Integer.parseInt(pos)));
-        adapter.notifyDataSetChanged();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
-        String dateTime = sdf.format(new Date());
-        String[] mobile = LoginHandler.getUserMobile(getContext());
-        CrashHelper.SendCrashMailer(mobile[0],AppConstants.APPVERSION, String.valueOf(httpResult),response+"\n"+s1+"\n"+s2+"MEMBER_COUNTRY_CODE:"+member_ccode+"MEMBER_MOBILE:"+member_mobile+"APT_ID:"+apt_id,dateTime,"android");
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss z");
+                String dateTime = sdf.format(new Date());
+                String[] mobile = LoginHandler.getUserMobile(getContext());
+                CrashHelper.SendCrashMailer(mobile[0],AppConstants.APPVERSION, String.valueOf(httpResult),s+response+"\n"+s1+"\n"+s2+"MEMBER_COUNTRY_CODE:"+member_ccode+"MEMBER_MOBILE:"+member_mobile+"APT_ID:"+apt_id,dateTime,"android");
+            }
+        });
+
     }
 
 

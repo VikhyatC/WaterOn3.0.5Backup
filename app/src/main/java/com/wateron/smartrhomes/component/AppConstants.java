@@ -5,5 +5,5 @@ package com.wateron.smartrhomes.component;
  */
 
 public class AppConstants {
-    public static String APPVERSION = "3.0.6";
+    public static String APPVERSION = "3.0.7";
 }
