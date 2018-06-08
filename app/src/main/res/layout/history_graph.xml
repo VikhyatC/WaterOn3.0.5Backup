@@ -561,6 +561,15 @@
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"/>
+                    <com.wateron.smartrhomes.component.Bar
+                        android:id="@+id/bar31"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
                 </LinearLayout>
 
 

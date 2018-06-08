@@ -1,5 +1,6 @@
 package com.wateron.smartrhomes.util;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -168,9 +169,10 @@ public class HistoryHelper {
                     e.printStackTrace();
                 } finally {
                     if(finished){
+                        Context context = handlerInterface.getInstance();
                         Log.d("Response","NotNullFinished");
                         new DataHelper(handlerInterface.getInstance());
-                        DataValidator.updateDataFlag(handlerInterface.getInstance(),"history",new Date().getTime());
+                        DataValidator.updateDataFlag(context,"history",new Date().getTime());
                         Log.d("Latest Data?", String.valueOf(dataLatest));
                         handlerInterface.loadData(false);
                         handlerInterface.RecheckData();

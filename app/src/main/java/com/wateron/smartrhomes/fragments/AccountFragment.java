@@ -168,7 +168,7 @@ public class AccountFragment extends Fragment implements AccountHandlerInterface
         adapter.remove(account);
         Log.d("AccountToDelete :",member_number.getNumber());
         adapter.notifyDataSetChanged();
-        Toast.makeText(getContext(), "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
+        Toast.makeText(this.context, "Memeber Deleted Successfully", Toast.LENGTH_LONG).show();
     }
 
     @Override

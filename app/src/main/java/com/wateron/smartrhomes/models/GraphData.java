@@ -8,12 +8,37 @@ public class GraphData {
     String weekDates1,weekDates2,weekDates3,weekDates4,weekDates5,weekDates6,weekDates7;
     String monthDates1,monthDates2,monthDates3,monthDates4,monthDates5,monthDates6,monthDates7,monthDates8,monthDates9,monthDates10;
     String monthDates11,monthDates12,monthDates13,monthDates14,monthDates15,monthDates16,monthDates17,monthDates18,monthDates19,monthDates20;
-    String monthDates21,monthDates22,monthDates23,monthDates24,monthDates25,monthDates26,monthDates27,monthDates28,monthDates29,monthDates30;
+    String monthDates21;
+    String monthDates22;
+    String monthDates23;
+    String monthDates24;
+    String monthDates25;
+    String monthDates26;
+    String monthDates27;
+    String monthDates28;
+    String monthDates29;
+    String monthDates30;
+
+
+    String monthDates31;
 
     double weekvalue1,weekvalue2,weekvalue3,weekvalue4,weekvalue5,weekvalue6,weekvalue7;
     double monthvalue1,monthvalue2,monthvalue3,monthvalue4,monthvalue5,monthvalue6,monthvalue7,monthvalue8,monthvalue9,monthvalue10;
     double monthvalue11,monthvalue12,monthvalue13,monthvalue14,monthvalue15,monthvalue16,monthvalue17,monthvalue18,monthvalue19,monthvalue20;
-    double monthvalue21,monthvalue22,monthvalue23,monthvalue24,monthvalue25,monthvalue26,monthvalue27,monthvalue28,monthvalue29,monthvalue30;
+    double monthvalue21;
+    double monthvalue22;
+    double monthvalue23;
+    double monthvalue24;
+    double monthvalue25;
+    double monthvalue26;
+    double monthvalue27;
+    double monthvalue28;
+    double monthvalue29;
+    double monthvalue30;
+
+
+
+    double monthvalue31;
 
     double weekAvg,weekmax,weekmin;
     double monthmax,monthmin,monthAvg;
@@ -370,6 +395,10 @@ public class GraphData {
         this.monthDates30 = monthDates30;
     }
 
+    public String getMonthDates31() {return monthDates31;}
+
+    public void setMonthDates31(String monthDates31) {this.monthDates31 = monthDates31;}
+
     public double getWeekvalue1() {
         return weekvalue1;
     }
@@ -664,6 +693,14 @@ public class GraphData {
 
     public void setMonthvalue30(double monthvalue30) {
         this.monthvalue30 = monthvalue30;
+    }
+
+    public double getMonthvalue31() {
+        return monthvalue31;
+    }
+
+    public void setMonthvalue31(double monthvalue31) {
+        this.monthvalue31 = monthvalue31;
     }
 
     public double getWeekAvg() {

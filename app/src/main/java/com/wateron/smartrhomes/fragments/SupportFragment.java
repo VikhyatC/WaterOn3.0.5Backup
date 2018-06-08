@@ -28,6 +28,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 import org.json.JSONException;
 import org.w3c.dom.Text;
@@ -279,9 +280,9 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
 
         @Override
         protected void onPostExecute(Void aVoid) {
-
+            Log.d("httpResultTicket", String.valueOf(httpResult.getStatusCode()));
             //httpReply = TicketHttpHelper.httpPost()
-            if (result!=null){
+            if (httpResult.getStatusCode()==201){
                 AcknowlgmentFragment fragment = new AcknowlgmentFragment();
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentview,fragment);
@@ -312,15 +313,12 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
 
             JSONObject data = new JSONObject();
             try {
-
-                data.put("description", strings[0]);
-                data.put("subject", strings[3]);
+                data.put("custom_fields", customfields);
                 data.put("email", strings[4]);
-                data.put("priority", 1);
-
-                // data.put("custom_fields", new JSONArray().;
                 data.put("status",2);
-
+                data.put("subject", strings[3]);
+                data.put("priority", 1);
+                data.put("description", strings[0]);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:id="@+id/progressBar"
-          />
+            />
         </LinearLayout>
         <LinearLayout
             android:layout_weight="3.5"
@@ -52,11 +52,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <LinearLayout
-
                             android:paddingBottom="15dp"
                             android:paddingLeft="5dp"
                             android:paddingRight="15dp"
-
                             android:id="@+id/homebutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">

@@ -788,10 +788,8 @@ public class DashboardFragment extends Fragment implements DashboardHandlerInter
             public void onClick(View v) {
                 if(maxmonthslot>=0){
                     removeMonthSlotBackground(currentSelectedMonthSlot);
-
                     currentSelectedMonthSlot=0;
                     addMonthSlotBackground(currentSelectedMonthSlot);
-
                     showValue();
                 }
             }

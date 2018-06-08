@@ -306,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragment.setArguments(bundle);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction().addToBackStack(null);
             ft.replace(R.id.fragmentview,fragment);
-            ft.commit();
+            ft.commitAllowingStateLoss();
             getSupportFragmentManager().executePendingTransactions();
         }else if(fragment instanceof HistoryFragment){
             fragment=new HistoryFragment();
