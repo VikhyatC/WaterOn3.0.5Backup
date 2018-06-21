@@ -74,8 +74,8 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
     int[] barids=new int[]{
             R.id.bar1,R.id.bar2,R.id.bar3,R.id.bar4,R.id.bar5,R.id.bar6,R.id.bar7,R.id.bar8,R.id.bar9,R.id.bar10,
             R.id.bar11,R.id.bar12,R.id.bar13,R.id.bar14,R.id.bar15,R.id.bar16,R.id.bar17,R.id.bar18,R.id.bar19,R.id.bar20,
-            R.id.bar21,R.id.bar22,R.id.bar23,R.id.bar24,R.id.bar25,R.id.bar26,R.id.bar27,R.id.bar28,R.id.bar29,R.id.bar30
-    };
+            R.id.bar21,R.id.bar22,R.id.bar23,R.id.bar24,R.id.bar25,R.id.bar26,R.id.bar27,R.id.bar28,R.id.bar29,R.id.bar30,
+            R.id.bar31};
     int[] weekbarids=new int[]{
             R.id.weekbar1,R.id.weekbar2,R.id.weekbar3,R.id.weekbar4,R.id.weekbar5,R.id.weekbar6,R.id.weekbar7
     };
@@ -1314,7 +1314,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                 if(curselbar==30){
                     curselbar=0;
                 }else {
-                    curselbar=1;
+                    curselbar=30;
                 }
                 activatebartouch(v.getId());
             }
@@ -1326,7 +1326,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                 if(curselbar==31){
                     curselbar=0;
                 }else {
-                    curselbar=1;
+                    curselbar=31;
                 }
                 activatebartouch(v.getId());
             }
@@ -1433,6 +1433,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
         }else{
             currentFrom=monthoptionfrom[currentselectedmonthoption];
             currentTo=monthoptionto[currentselectedmonthoption];
+            Log.d("Current From/To",currentFrom+"/"+currentTo);
             ((MainActivity)getActivity()).logevent("History_time_selection",currentFrom+currentTo,"Touch Event");
         }
         checkBackAndForwardButton();
@@ -1501,6 +1502,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
         SimpleDateFormat sdf2=new SimpleDateFormat("dd",Locale.ENGLISH);
         SimpleDateFormat sdf3=new SimpleDateFormat("EEE",Locale.ENGLISH);
         Calendar cal = Calendar.getInstance();
+        clickCount =0;
         weekoptionfrom=new String[]{"","","",""};
         weekoptionto=new String[]{"","","",""};
         monthoptionfrom=new String[]{"",""};
@@ -1748,6 +1750,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                 weeklegendbottom.setVisibility(View.GONE);
                 roomType.setText(monthselectiondate1.getText());
                 Log.d("monthselected", String.valueOf(monthselectiondate1.getText()));
+                clickCount =0;
                 setRoomType();
                 loadValues();
                 displayloadedValues();
@@ -1795,9 +1798,11 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                 monthpicker.setTypeface(typeface2);
                 roomType.setText(weekselectiondate1.getText());
                 Log.d("weekselected", String.valueOf(weekselectiondate1.getText()));
+
                 setRoomType();
                 loadValues();
                 displayloadedValues();
+
             }
         });
 
@@ -1859,6 +1864,7 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                         long f=getPastTime(sdf.parse(currentFrom).getTime(),7);
                         long t=getPastTime(new Date().getTime(),91);
                         if(f>t){
+
                             currentFrom=sdf.format(new Date(f));
                             currentTo=sdf.format(new Date(getFutureTime(f,6)));
                             Log.d(currentFrom,currentTo);
@@ -1871,15 +1877,28 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                         e.printStackTrace();
                     }
                 }else{
+                    Calendar calendar = Calendar.getInstance();
                     Log.d("PreviousDates", String.valueOf(getPreviousDates(new Date(), clickCount)));
                     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     try {
                         long f=getPastTime(sdf.parse(currentFrom).getTime(),30);
                         long t=getPastTime(new Date().getTime(),91);
+                        Log.d("SelectedMonthOption", String.valueOf(currentselectedmonthoption));
                         if(f>t){
-                            currentFrom=sdf.format(getPreviousDates(new Date(),clickCount));
-                            currentTo=sdf.format(new Date(getFutureTime(f,29)));
-                            Log.d(currentFrom,currentTo);
+                            if (currentselectedmonthoption==1){
+                                currentFrom=sdf.format(getPreviousDates(new Date(),clickCount));
+                                calendar.add(Calendar.MONTH,clickCount);
+                                noOfDays = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+                                calendar.set(Calendar.DAY_OF_MONTH,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+                                currentTo=sdf.format(calendar.getTimeInMillis());
+                                currentFrom=sdf.format(getPreviousDates(new Date(),clickCount));
+                                currentTo=sdf.format(new Date(getFutureTime(f,29)));
+                                Log.d("FROM->TO",currentFrom+"->"+currentTo);
+                            }else{
+                                currentFrom=sdf.format(new Date(f));
+                                currentTo=sdf.format(new Date(getFutureTime(f,29)));
+                                Log.d("FROM->TO",currentFrom+"->"+currentTo);
+                            }
                             ((MainActivity)getActivity()).logevent("History_time_selection",currentFrom+currentTo,"Touch Event");
                             checkBackAndForwardButton();
                             loadValues();
@@ -1923,12 +1942,19 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                         long f=getFutureTime(sdf.parse(currentFrom).getTime(),30);
                         long t=new Date().getTime();
                         if(f<t){
-                            currentFrom=sdf.format(getPreviousDates(new Date(),clickCount));
-                            cal.add(Calendar.MONTH,clickCount);
-//                            noOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-                            cal.set(Calendar.DAY_OF_MONTH,cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-                            currentTo=sdf.format(cal.getTimeInMillis());
-                            Log.d(currentFrom,currentTo);
+                            if (currentselectedmonthoption==1){
+                                currentFrom=sdf.format(getPreviousDates(new Date(),clickCount));
+                                cal.add(Calendar.MONTH,clickCount);
+                                noOfDays = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                                cal.set(Calendar.DAY_OF_MONTH,cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+                                currentTo=sdf.format(cal.getTimeInMillis());
+                                Log.d("FROM->TO",currentFrom+"->"+currentTo);
+                            }else{
+                                currentFrom=sdf.format(new Date(f));
+                                currentTo=sdf.format(new Date(getFutureTime(f,29)));
+                                Log.d("FROM->TO",currentFrom+"->"+currentTo);
+                            }
+
                             ((MainActivity)getActivity()).logevent("History_time_selection",currentFrom+currentTo,"Touch Event");
                             checkBackAndForwardButton();
                             loadValues();
@@ -1943,13 +1969,13 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
     }
 
     private Date getPreviousDates(Date nowDate, int clickCount) {
+        Log.d("clickCOunt", String.valueOf(clickCount));
         Calendar c = Calendar.getInstance();
         c.setTime(nowDate);
         c.add(Calendar.MONTH, clickCount);
         c.set(Calendar.DATE, c.getMinimum(Calendar.DATE));
         noOfDays = c.getActualMaximum(Calendar.DATE);
-        Date nextDate = c.getTime();
-        return nextDate;
+        return c.getTime();
     }
 
     int currentslot=92;
@@ -2518,6 +2544,17 @@ public class HistoryFragment extends Fragment implements HistoryHandlerInterface
                         datatodisp="-";
                         try {
                             datatodisp=sdf1.format(sdf.parse(graphData.getMonthDates30()));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        alertdategraph.setText(datatodisp);
+                        graphalertcount.setText(String.valueOf(a.getValue()));
+                        break;
+                    case 31:
+                        a = dataHandler.getHAlert(selectedAptId,graphData.getMonthDates31());
+                        datatodisp="-";
+                        try {
+                            datatodisp=sdf1.format(sdf.parse(graphData.getMonthDates31()));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }

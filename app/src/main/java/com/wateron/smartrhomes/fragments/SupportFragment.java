@@ -76,6 +76,8 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
     private TextView inavlidInput;
     private String mobile;
     private String address;
+    private String floor;
+    private String apartment_name;
     private String email;
     private String description;
     private ProgressBar progressBar;
@@ -93,7 +95,6 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
         int apt_id = selectedApartment.getId();
         selectedAptId = apt_id;
         society = selectedApartment.getSociety();
-
     }
 
     @Override
@@ -198,8 +199,8 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
                 }else{
                     progressBar.setVisibility(View.VISIBLE);
                     TicketFetcher ticketFetcher = new TicketFetcher();
-                    Log.d("AddessOfCustomer",address);
-                    ticketFetcher.execute(description, mobile, address,subject,email);
+                    Log.d("FloorOfCustomer",floor);
+                    ticketFetcher.execute(description, mobile,apartment_name,society,subject,email);
                 }
             }
         });
@@ -259,8 +260,8 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
                 progressBar.setVisibility(View.GONE);
                 User_details = new JSONObject(user_data);
                 mobile= User_details.getString("resident_phone");
-                String floor= User_details.getString("address");
-                String apartment_name= User_details.getString("apartment_name");
+                floor= User_details.getString("address");
+                apartment_name= User_details.getString("apartment_name");
                 address = society+" "+floor+" "+apartment_name;
                 email = User_details.getString("resident_email");
             }
@@ -307,18 +308,22 @@ public class SupportFragment extends Fragment implements TicketHandlerInteface{
             try {
                 customfields.put("mobile_number",strings[1]);
                 customfields.put("address",strings[2]);
+                customfields.put("cf_society_name",strings[3]);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
             JSONObject data = new JSONObject();
             try {
-                data.put("custom_fields", customfields);
-                data.put("email", strings[4]);
-                data.put("status",2);
-                data.put("subject", strings[3]);
-                data.put("priority", 1);
                 data.put("description", strings[0]);
+                data.put("subject", strings[4]);
+                data.put("email", strings[5]);
+                data.put("priority", 1);
+                data.put("status",2);
+                data.put("custom_fields", customfields);
+
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

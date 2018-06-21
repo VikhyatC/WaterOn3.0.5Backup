@@ -226,6 +226,7 @@ public class DataHelper extends SQLiteOpenHelper{
             contentValues.put(DAILY_DATA_CONSUMPTION_DATA_APT_ID,d.getAptId());
             contentValues.put(DAILY_DATA_CONSUMPTION_DATA_METER_ID,d.getMeterId());
             contentValues.put(DAILY_DATA_CONSUMPTION_DATA_DATE,d.getDate());
+
 //            Log.d("DataId&Value",d.getMeterId()+"-"+d.getDate());
             db.insertWithOnConflict(DAILY_DATA_CONSUMPTION_DATA_TABLE,null,contentValues,SQLiteDatabase.CONFLICT_REPLACE);
         }

@@ -464,8 +464,6 @@ public class PreLoginActivity extends AppCompatActivity {
                 String manufacturer_name = Build.MANUFACTURER;
                 String product_name = Build.PRODUCT;
                 CrashHelper.SendCrashMailer("("+ccode+")"+mobileNo,AppConstants.APPVERSION, String.valueOf(httpResult),response1+"\n"+model_name+"\n"+manufacturer_name+"\n"+product_name+request_url+authoriztaion+token,dateTime+"-"+SIGNINTAG,"android");
-                Toast.makeText(PreLoginActivity.this,"Couldn't send OTP, please try again",Toast.LENGTH_LONG).show();
-                Toast.makeText(PreLoginActivity.this,"Invalid mobile no or password",Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -214,7 +214,7 @@ public class AccountAdapter extends ArrayAdapter<Account> implements AccountHand
                     Log.d("FieldsEmpty", String.valueOf(member_mobile.length()));
                     if (member_mobile.length() > 0 && member_isd.length() > 0) {
                         Log.d("Member Details:", member_mobile + ":" + member_isd);
-                        AccountHelper.addFamilyMember(mobile[0], mobile[1], authToken, AccountAdapter.this, member_mobile, member_isd);
+                        AccountHelper.addFamilyMember(mobile[0], mobile[1], authToken, AccountAdapter.this, member_mobile, member_isd,aptID);
                         holder.save.setVisibility(View.GONE);
                         accountFragment.removeExisitingUser(position);
                         notifyDataSetChanged();

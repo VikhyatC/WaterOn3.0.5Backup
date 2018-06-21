@@ -39,13 +39,13 @@ public class AccountHelper {
         familyDestroyer.execute("("+isd+")"+mobile,token,member_number,member_isd, String.valueOf(aptID), String.valueOf(pos));
     }
 
-    public static void addFamilyMember(String mobile, String isd, String token, AccountHandlerInterface handlerInterface, String member_mobile, String member_isd) {
+    public static void addFamilyMember(String mobile, String isd, String token, AccountHandlerInterface handlerInterface, String member_mobile, String member_isd, int aptID) {
         AccountHelper.handlerInterface = handlerInterface;
         FamilyAdder familyAdder = new FamilyAdder();
         Log.d("Mobile/ISD?",mobile);
        // int member_mobile_number=AccountHelper.numbers.get(0);
        // Log.d("Mem_mob_no", String.valueOf(member_mobile_number));
-        familyAdder.execute(mobile,isd,token,member_mobile,member_isd);
+        familyAdder.execute(mobile,isd,token,member_mobile,member_isd, String.valueOf(aptID));
     }
 
     public static void changeFamilyMember(String mobile,String isd,String token,String main, String s, AccountHandlerInterface handlerInterface) {
@@ -67,7 +67,7 @@ public class AccountHelper {
         String token;
         @Override
         protected Void doInBackground(String... strings) {
-            url="http://appapi.wateron.in/v2.0/account/member";
+            url="http://appapi.wateron.in/v2.0/account/member/"+strings[2];
             Log.d("data getting",url);
             aptid = Integer.parseInt(strings[2]);
             try {
@@ -170,7 +170,7 @@ public class AccountHelper {
 
         @Override
         protected Void doInBackground(String... strings) {
-            url = "http://appapi.wateron.in/v2.0/account/member";
+            url = "http://appapi.wateron.in/v2.0/account/member/"+strings[5];
 //             object= null;
             URL object= null;
             try {
